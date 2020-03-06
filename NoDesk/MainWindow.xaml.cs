@@ -14,6 +14,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using MongoDB.Bson;
 using MongoDB.Driver;
+using NoDesk.Model;
 
 namespace NoDesk
 {
@@ -44,7 +45,10 @@ namespace NoDesk
             {
                 Console.WriteLine(item);
             }
-
+            database = dbClient.GetDatabase("nodesk");
+            var collection2 = database.GetCollection<User>("users");
+            var user = new User { FirstName = "Sjors", LastName = "Grooff", Location = "Haarlem", MailAdress = "groofy98@hotmail.com", PhoneNumber = 0658848228, Type = UserType.Admin };
+            collection2.InsertOne(user);            
 
         }
     }
