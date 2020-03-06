@@ -32,8 +32,7 @@ namespace NoDesk
 
         public string PrintOutUser()
         {
-            return ("id: " + Id.ToString() +
-                "\nFirst name: " + this.FirstName
+            return ("First name: " + this.FirstName
                 + "\nLast Name: " + this.LastName +
                 "\nType: " + this.Type +
                 "\nMail: " + this.MailAdress

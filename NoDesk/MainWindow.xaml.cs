@@ -14,7 +14,6 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using MongoDB.Bson;
 using MongoDB.Driver;
-using NoDesk.Model;
 
 namespace NoDesk
 {
@@ -37,7 +36,7 @@ namespace NoDesk
             var dbList = dbClient.ListDatabases().ToList();
             var database = dbClient.GetDatabase("sample_training");
             var collection = database.GetCollection<BsonDocument>("grades");
-            var firstDocument = collection.Find(new BsonDocument()).FirstOrDefault();
+            var firstDocument = collection.Find(new BsonDocument());
             Console.WriteLine(firstDocument.ToString());
             Console.WriteLine("The list of databases are:");
 
@@ -47,9 +46,15 @@ namespace NoDesk
             }
             database = dbClient.GetDatabase("nodesk");
             var collection2 = database.GetCollection<User>("users");
-            var user = new User { FirstName = "Sjors", LastName = "Grooff", Location = "Haarlem", MailAdress = "groofy98@hotmail.com", PhoneNumber = 0658848228, Type = UserType.Admin };
-            collection2.InsertOne(user);            
-
+            User user = new User { FirstName = "Twan", LastName = "Grooff", Location = "Haarlem", MailAdress = "twan@hotmail.com", PhoneNumber = 0658848228, Type = UserType.Admin };
+            collection2.InsertOne(user);
+            var filter = Builders<User>.Filter.Empty;
+            List<User> result = collection2.Find(filter).ToList();
+            foreach (User u in result)
+            {
+                Console.WriteLine("name: " + u.FirstName);
+                Console.WriteLine(value: u.PrintOutUser());
+            }
         }
     }
 }
