@@ -14,6 +14,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using MongoDB.Bson;
 using MongoDB.Driver;
+using MongoDB.Driver.Linq;
 
 namespace NoDesk
 {
@@ -23,18 +24,20 @@ namespace NoDesk
     /// </summary>
     public partial class MainWindow : Window
     {
+        public MongoClient dbClient;
+        public IMongoDatabase database;
         public MainWindow()
         {
             InitializeComponent();
-            
+            dbClient = new MongoClient("mongodb+srv://Sjors:Yolo1@cluster0-dg3ym.mongodb.net/test?retryWrites=true&w=majority");
         }
 
         private void ButtonClick(object sender, RoutedEventArgs e)
         {
 
-            var dbClient = new MongoClient("mongodb+srv://Sjors:Yolo1@cluster0-dg3ym.mongodb.net/test?retryWrites=true&w=majority");
+            
             var dbList = dbClient.ListDatabases().ToList();
-            var database = dbClient.GetDatabase("sample_training");
+            database = dbClient.GetDatabase("sample_training");
             var collection = database.GetCollection<BsonDocument>("grades");
             var firstDocument = collection.Find(new BsonDocument());
             Console.WriteLine(firstDocument.ToString());
@@ -47,7 +50,7 @@ namespace NoDesk
             database = dbClient.GetDatabase("nodesk");
             var collection2 = database.GetCollection<User>("users");
             User user = new User { FirstName = "Twan", LastName = "Grooff", Location = "Haarlem", MailAdress = "twan@hotmail.com", PhoneNumber = 0658848228, Type = UserType.Admin };
-            collection2.InsertOne(user);
+            //collection2.InsertOne(user);
             var filter = Builders<User>.Filter.Empty;
             List<User> result = collection2.Find(filter).ToList();
             foreach (User u in result)
@@ -55,6 +58,16 @@ namespace NoDesk
                 Console.WriteLine("name: " + u.FirstName);
                 Console.WriteLine(value: u.PrintOutUser());
             }
+            this.dataGrid.ItemsSource = result;            
+        }
+
+        private void dataGrid_CellEditEnding(object sender, DataGridCellEditEndingEventArgs e)
+        {
+            User user = (User)e.Row.Item;
+            Console.WriteLine(user.PrintOutUser());
+            database = dbClient.GetDatabase("nodesk");
+            IMongoCollection<User> collection2 = database.GetCollection<User>("users");            
+            collection2.save(user);
         }
     }
 }
