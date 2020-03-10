@@ -6,9 +6,10 @@
         xmlns:local="clr-namespace:NoDesk"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
-    <Grid>
-        <Button x:Name="buttonButton" Content="Button" HorizontalAlignment="Left" Margin="664,23,0,0" VerticalAlignment="Top" Width="112" Height="48" Click="ButtonClick"/>
-        <DataGrid x:Name="dataGrid" HorizontalAlignment="Left" Height="419" VerticalAlignment="Top" Width="639" CellEditEnding="dataGrid_CellEditEnding"/>
+    <Grid Margin="0,0,2,0">
+        <Button x:Name="buttonButton" Content="Button" HorizontalAlignment="Left" Margin="659,21,-133,0" VerticalAlignment="Top" Width="112" Height="48" Click="ButtonClick"/>
+        <DataGrid x:Name="dataGrid" HorizontalAlignment="Left" Height="419" VerticalAlignment="Top" Width="639" RowEditEnding="dataGrid_RowEditEnding"/>
+        <Button Content="Button" HorizontalAlignment="Left" Margin="659,85,0,0" VerticalAlignment="Top" Width="112" Height="47" Click="Button_Click2"/>
 
     </Grid>
 </Window>

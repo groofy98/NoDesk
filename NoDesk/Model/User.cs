@@ -22,7 +22,7 @@ namespace NoDesk
         //    Location = location;
         //    this.PrintOutUser();
         //}
-        public ObjectId Id;       
+        public ObjectId id;       
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public UserType Type { get; set; }
@@ -32,7 +32,7 @@ namespace NoDesk
 
         public string PrintOutUser()
         {
-            return ("id: " + Id.ToString() +
+            return ("id: " + id.ToString() +
                 "\nFirst name: " + this.FirstName
                 + "\nLast Name: " + this.LastName +
                 "\nType: " + this.Type +

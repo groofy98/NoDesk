@@ -24,12 +24,14 @@ namespace NoDesk
     /// </summary>
     public partial class MainWindow : Window
     {
+        public List<User> userEdits;
         public MongoClient dbClient;
         public IMongoDatabase database;
         public MainWindow()
         {
             InitializeComponent();
             dbClient = new MongoClient("mongodb+srv://Sjors:Yolo1@cluster0-dg3ym.mongodb.net/test?retryWrites=true&w=majority");
+            userEdits = new List<User>();
         }
 
         private void ButtonClick(object sender, RoutedEventArgs e)
@@ -58,16 +60,26 @@ namespace NoDesk
                 Console.WriteLine("name: " + u.FirstName);
                 Console.WriteLine(value: u.PrintOutUser());
             }
-            this.dataGrid.ItemsSource = result;            
+            this.dataGrid.ItemsSource = result;                  
         }
 
-        private void dataGrid_CellEditEnding(object sender, DataGridCellEditEndingEventArgs e)
+        private void dataGrid_RowEditEnding(object sender, DataGridRowEditEndingEventArgs e)
+        {                           
+            var user = (User)e.Row.Item;
+            userEdits.Add(user);
+
+        }
+
+        private void Button_Click2(object sender, RoutedEventArgs e)
         {
-            User user = (User)e.Row.Item;
-            Console.WriteLine(user.PrintOutUser());
             database = dbClient.GetDatabase("nodesk");
-            IMongoCollection<User> collection2 = database.GetCollection<User>("users");            
-            collection2.save(user);
+            IMongoCollection<User> collection = database.GetCollection<User>("users");
+            foreach (User user in userEdits)
+            {
+            Console.WriteLine(user.id.ToJson());
+            var filter = Builders<User>.Filter.Eq("_id", user.id);
+            Console.WriteLine(collection.ReplaceOne(filter, user).IsAcknowledged);
+            }
         }
     }
 }
