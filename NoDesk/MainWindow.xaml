@@ -7,9 +7,14 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid Margin="0,0,2,0">
-        <Button x:Name="buttonButton" Content="Button" HorizontalAlignment="Left" Margin="659,21,-133,0" VerticalAlignment="Top" Width="112" Height="48" Click="ButtonClick"/>
-        <DataGrid x:Name="dataGrid" HorizontalAlignment="Left" Height="419" VerticalAlignment="Top" Width="639" RowEditEnding="dataGrid_RowEditEnding"/>
-        <Button Content="Button" HorizontalAlignment="Left" Margin="659,85,0,0" VerticalAlignment="Top" Width="112" Height="47" Click="Button_Click2"/>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="259*"/>
+            <ColumnDefinition Width="350*"/>
+            <ColumnDefinition Width="181*"/>
+        </Grid.ColumnDefinitions>
+        <Button x:Name="buttonButton" Content="Button" HorizontalAlignment="Left" Margin="50.409,21,0,0" VerticalAlignment="Top" Width="112" Height="48" Click="ButtonClick" Grid.Column="2"/>
+        <DataGrid x:Name="dataGrid" HorizontalAlignment="Left" Height="419" VerticalAlignment="Top" Width="639" RowEditEnding="dataGrid_RowEditEnding" SelectionChanged="dataGrid_SelectionChanged" Grid.ColumnSpan="3"/>
+        <Button Content="Button" HorizontalAlignment="Left" Margin="50.409,85,0,0" VerticalAlignment="Top" Width="112" Height="47" Click="Button_Click2" Grid.Column="2"/>
 
     </Grid>
 </Window>

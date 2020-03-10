@@ -92,7 +92,14 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="AddIncidentTicket.xaml.cs">
+      <DependentUpon>AddIncidentTicket.xaml</DependentUpon>
+    </Compile>
     <Compile Include="model\User.cs" />
+    <Page Include="AddIncidentTicket.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
