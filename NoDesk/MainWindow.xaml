@@ -5,11 +5,16 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:NoDesk"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="600" Width="810">
     <Grid Margin="0,0,2,0">
-        <Button x:Name="buttonButton" Content="Button" HorizontalAlignment="Left" Margin="659,21,-133,0" VerticalAlignment="Top" Width="112" Height="48" Click="ButtonClick"/>
-        <DataGrid x:Name="dataGrid" HorizontalAlignment="Left" Height="419" VerticalAlignment="Top" Width="639" RowEditEnding="dataGrid_RowEditEnding"/>
-        <Button Content="Button" HorizontalAlignment="Left" Margin="659,85,0,0" VerticalAlignment="Top" Width="112" Height="47" Click="Button_Click2"/>
-
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="263*"/>
+            <ColumnDefinition Width="137*"/>
+        </Grid.ColumnDefinitions>
+        <StackPanel Height="100" VerticalAlignment="Top" Orientation="Horizontal" Grid.ColumnSpan="2">
+            <Button Content="Dashboard" MinWidth="200px" Click="Button_Click"/>
+            <Button Content="indent managaement" MinWidth="200px"/>
+        </StackPanel>
+        <Frame x:Name="mainFrame" NavigationUIVisibility="Hidden" Content="Frame" HorizontalAlignment="Left" Height="450" Margin="0,119,0,0" VerticalAlignment="Top" Width="800" Grid.ColumnSpan="2"/>
     </Grid>
 </Window>
