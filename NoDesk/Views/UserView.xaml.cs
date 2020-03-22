@@ -12,32 +12,17 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using MongoDB.Bson;
-using MongoDB.Driver;
-using MongoDB.Driver.Linq;
-using NoDesk.view;
 
-namespace NoDesk
+namespace NoDesk.Views
 {
-    //"mongodb+srv://Sjors:*FDmqwry+r3rT+i@cluster0-dg3ym.mongodb.net/test?retryWrites=true&w=majority"
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for UserView.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class UserView : UserControl
     {
-
-        public MainWindow()
+        public UserView()
         {
             InitializeComponent();
-
-        }
-
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            mainFrame.Content = new UserView();
         }
     }
-
-            
-            
 }

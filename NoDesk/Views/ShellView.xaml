@@ -1,0 +1,47 @@
+﻿<Window x:Class="NoDesk.Views.ShellView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:NoDesk.Views"
+        xmlns:lvc="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
+        mc:Ignorable="d"
+        Title="ShellView" Height="450" Width="800" WindowStartupLocation="CenterScreen">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="20"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="20"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="20"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="20"/>
+        </Grid.RowDefinitions>
+        
+        <!--Row 1-->        
+        
+        <!--Row 2-->
+        <Button x:Name="ShowDashboard" Grid.Column="1" Grid.Row="2" MinWidth="200">
+           Dashboard
+        </Button>
+        <Button x:Name="ShowTickets" Grid.Column="3" Grid.Row="2" MinWidth="200">
+           tickets
+        </Button>
+        <Button x:Name="ShowUsers" Grid.Column="2" Grid.Row="2" MinWidth="200">
+            Users
+        </Button>
+        
+        <!--Row 5-->
+        <ContentControl Grid.Row="5" Grid.Column="1" Grid.ColumnSpan="5"
+                        x:Name="ActiveItem"/>
+    </Grid>
+</Window>
