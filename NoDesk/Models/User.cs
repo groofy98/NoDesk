@@ -12,16 +12,6 @@ namespace NoDesk
     public enum UserType{ Employee, Admin };
     public class User
     {
-        //public User(string firstName, string lastName, UserType type, string mailAdress, int phoneNumber, string location)
-        //{
-        //    FirstName = firstName;
-        //    LastName = lastName;
-        //    Type = type;
-        //    MailAdress = mailAdress;
-        //    PhoneNumber = phoneNumber;
-        //    Location = location;
-        //    this.PrintOutUser();
-        //}
         public ObjectId id;       
         public string FirstName { get; set; }
         public string LastName { get; set; }
