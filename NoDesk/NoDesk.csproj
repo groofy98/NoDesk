@@ -144,7 +144,7 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="model\UserType.cs" />
+    <Compile Include="Models\UserType.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>

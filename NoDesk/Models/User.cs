@@ -8,8 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace NoDesk
-{
-    public enum UserType{ Employee, Admin };
+{    
     public class User
     {
         public ObjectId id;       
