@@ -113,10 +113,15 @@
     <Compile Include="Bootstrapper.cs" />
     <Compile Include="Dal\Database.cs" />
     <Compile Include="Dal\UserDal.cs" />
+    <Compile Include="Models\IncidentTicket.cs" />
+    <Compile Include="Models\IncidentType.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="ViewModels\DashboardViewModel.cs" />
     <Compile Include="ViewModels\ShellViewModel.cs" />
     <Compile Include="ViewModels\UserViewModel.cs" />
+    <Compile Include="Views\AddIncidentTicket.xaml.cs">
+      <DependentUpon>AddIncidentTicket.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\DashboardView.xaml.cs">
       <DependentUpon>DashboardView.xaml</DependentUpon>
     </Compile>
@@ -130,6 +135,10 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Views\AddIncidentTicket.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\DashboardView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
