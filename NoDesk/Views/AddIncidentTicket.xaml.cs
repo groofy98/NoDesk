@@ -22,7 +22,7 @@ namespace NoDesk.Views
     {
         public AddIncidentTicket()
         {
-            InitializeComponent();
+            
         }
     }
 }

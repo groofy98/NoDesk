@@ -9,7 +9,7 @@
       Title="AddIncidentTicket">
 
     <Grid>
-        <ComboBox HorizontalAlignment="Left" Margin="292,66,0,0" VerticalAlignment="Top" Width="218" Name="IncidentDate" SelectionChanged="IncidentDate_SelectionChanged">
+        <ComboBox HorizontalAlignment="Left" Margin="292,66,0,0" VerticalAlignment="Top" Width="218" Name="IncidentDate">
 
             <ComboBoxItem Content="Tea"></ComboBoxItem>
             <ComboBoxItem Content="Orange Juice"></ComboBoxItem>
