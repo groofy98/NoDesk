@@ -6,6 +6,16 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace NoDesk.ViewModels {
-    public class LoginViewModel : Conductor<Object> {
+    class LoginViewModel : Screen {
+        public ShellViewModel shellViewModel;
+
+        public LoginViewModel(ShellViewModel shellViewModel) {
+            this.shellViewModel = shellViewModel;
+        }
+
+        public void LoginButton() {
+            this.shellViewModel.LoggedUser = new User();
+            this.shellViewModel.ActivateItem(new DashboardViewModel(this.shellViewModel));
+        }
     }
 }

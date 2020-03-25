@@ -34,7 +34,7 @@
            Dashboard
         </Button>
         <Button x:Name="ShowTickets" Grid.Column="3" Grid.Row="2" MinWidth="200">
-           tickets
+           Tickets
         </Button>
         <Button x:Name="ShowUsers" Grid.Column="2" Grid.Row="2" MinWidth="200">
             Users

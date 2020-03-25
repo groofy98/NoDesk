@@ -9,11 +9,22 @@ namespace NoDesk.ViewModels
 {
     public class ShellViewModel : Conductor<Object>
     {
+        private User loggedUser;
 
-		public ShellViewModel()
+        public ShellViewModel()
 		{
-			ActivateItem(new DashboardViewModel());
-		}		
+            ActivateItem(new LoginViewModel(this));
+		}
+
+        public User LoggedUser {
+            get { return loggedUser; }
+            set {
+                loggedUser = value;
+                NotifyOfPropertyChange(() => CanShowDashboard);
+                NotifyOfPropertyChange(() => CanShowUsers);
+                NotifyOfPropertyChange(() => CanShowTickets);
+            }
+        }
 
 		public void ShowUsers()
 		{
@@ -22,10 +33,41 @@ namespace NoDesk.ViewModels
 
 		public void ShowDashboard()
 		{
-			ActivateItem(new DashboardViewModel());
+			ActivateItem(new DashboardViewModel(this));
 		}
 
+        public void ShowTickets() {
+            ActivateItem(new DashboardViewModel(this));
+        }
 
+        public bool CanShowDashboard {
+            get {
+                if (LoggedUser == null) {
+                    return false;
+                } else {
+                    return true;
+                }
+            } 
+        }
 
-	}
+        public bool CanShowTickets {
+            get {
+                if (LoggedUser == null) {
+                    return false;
+                } else {
+                    return true;
+                }
+            }
+        }
+
+        public bool CanShowUsers {
+            get {
+                if (LoggedUser == null) {
+                    return false;
+                } else {
+                    return true;
+                }
+            }
+        }
+    }
 }
