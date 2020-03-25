@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace NoDesk.ViewModels {
     class LoginViewModel : Screen {
@@ -13,9 +14,12 @@ namespace NoDesk.ViewModels {
             this.shellViewModel = shellViewModel;
         }
 
+        public string usernameInput { get; set; }
+        public string passwordInput { get; set; }
+
         public void LoginButton() {
             this.shellViewModel.LoggedUser = new User();
-            this.shellViewModel.ActivateItem(new DashboardViewModel(this.shellViewModel));
+            this.shellViewModel.ActivateItem(new DashboardViewModel(this.shellViewModel)); //show new usercontrol after login
         }
     }
 }
