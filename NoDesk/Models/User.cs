@@ -14,8 +14,10 @@ namespace NoDesk
         public ObjectId id;       
         public string FirstName { get; set; }
         public string LastName { get; set; }
+        public string Username { get; set; }
+        public string Password { get; set; }
         public UserType Type { get; set; }
-        public string MailAdress { get; set; }
+        public string MailAddress { get; set; }
         public int PhoneNumber { get; set; }
         public string Location { get; set; }
 
@@ -25,7 +27,7 @@ namespace NoDesk
                 "\nFirst name: " + this.FirstName
                 + "\nLast Name: " + this.LastName +
                 "\nType: " + this.Type +
-                "\nMail: " + this.MailAdress
+                "\nMail: " + this.MailAddress
                 );
         }
 
