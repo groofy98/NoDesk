@@ -112,6 +112,7 @@
     </ApplicationDefinition>
     <Compile Include="Bootstrapper.cs" />
     <Compile Include="Dal\Database.cs" />
+    <Compile Include="Dal\TicketDal.cs" />
     <Compile Include="Dal\UserDal.cs" />
     <Compile Include="Models\IncidentTicket.cs" />
     <Compile Include="Models\IncidentType.cs" />
