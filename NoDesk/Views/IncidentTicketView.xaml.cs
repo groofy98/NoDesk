@@ -13,13 +13,12 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace NoDesk.Views
-{
+namespace NoDesk.Views {
     /// <summary>
-    /// Interaction logic for UserView.xaml
+    /// Interaction logic for IncidentView.xaml
     /// </summary>
-    public partial class UserView : UserControl {
-        public UserView() {
+    public partial class IncidentTicketView : UserControl {
+        public IncidentTicketView() {
             InitializeComponent();
         }
     }

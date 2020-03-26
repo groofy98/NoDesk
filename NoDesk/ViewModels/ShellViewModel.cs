@@ -29,7 +29,7 @@ namespace NoDesk.ViewModels
 
 		public void ShowUsers()
 		{
-			ActivateItem(new UserViewModel());
+			ActivateItem(new UserViewModel(this));
 		}
 
 		public void ShowDashboard()
@@ -38,7 +38,7 @@ namespace NoDesk.ViewModels
 		}
 
         public void ShowTickets() {
-            ActivateItem(new DashboardViewModel(this));
+            ActivateItem(new IncidentTicketViewModel(this));
         }
 
         //caliburn convention: Can
