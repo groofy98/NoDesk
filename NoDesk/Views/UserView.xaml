@@ -8,19 +8,27 @@
              d:DesignHeight="450" Background="White" d:DesignWidth="800">
     <Grid>
         <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="211"/>
             <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="auto"/>
-            <ColumnDefinition Width="auto"/>
-            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="150"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="*"/>
-            <RowDefinition  Height="auto"/>
+            <RowDefinition  Height="45"/>
+            <RowDefinition  Height="40"/>
             <RowDefinition  Height="auto"/>
             <RowDefinition  Height="auto"/>
             <RowDefinition  Height="auto"/>
             <RowDefinition  Height="auto"/>
         </Grid.RowDefinitions>
-        <DataGrid Grid.Row="0" Grid.Column="0" x:Name="Users"/>
+
+        <!-- Row 1 -->
+        <Label x:Name="Title" Content="User Management" FontSize="24" FontWeight="Bold" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3"/>
+
+        <!-- Row 2 -->
+        <TextBox x:Name="Filter" Grid.Row="1" Grid.Column="0" Margin="10,9,0,9" HorizontalAlignment="Left" Width="200"/>
+        <Button x:Name="AddNewUser" Grid.Row="1" Grid.Column="3" Margin="0,6,10,5" HorizontalAlignment="Right" Width="140" Background="#95f204">+ ADD NEW USER</Button>
+
+        <!-- Row 3 -->
+        <DataGrid Grid.Row="2" Grid.Column="0" x:Name="Users" Grid.RowSpan="4" Grid.ColumnSpan="4" HorizontalAlignment="Left"/>
     </Grid>
 </UserControl>

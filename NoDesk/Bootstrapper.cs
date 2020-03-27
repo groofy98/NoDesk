@@ -16,7 +16,7 @@ namespace NoDesk
         Initialize();
         }
 
-        protected override void OnStartup(object sender, StartupEventArgs e)
+        protected override void OnStartup(object sender, StartupEventArgs e) //open ShellViewModel on startup
         {
             DisplayRootViewFor<ShellViewModel>();
         }

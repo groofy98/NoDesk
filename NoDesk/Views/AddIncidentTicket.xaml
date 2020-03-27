@@ -15,7 +15,7 @@
             <ComboBoxItem Content="Milk"></ComboBoxItem>
             <ComboBoxItem Content="Iced Tea"></ComboBoxItem>
             <ComboBoxItem Content="Mango Shake"></ComboBoxItem>
-
+            
         </ComboBox>
         <ComboBox HorizontalAlignment="Left" Margin="292,239,0,0" VerticalAlignment="Top" Width="218" x:Name="IncidentType" BorderThickness="1" SelectedItem="{Binding Path=incidentTicket.Type, Mode=OneWayToSource}">>
             <ComboBoxItem Content="Software"></ComboBoxItem>
