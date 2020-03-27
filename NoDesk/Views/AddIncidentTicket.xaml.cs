@@ -39,13 +39,5 @@ namespace NoDesk.Views
 
             return comboBoxList;
         }
-
-        private void SubmitTicket_Click(object sender, RoutedEventArgs e)
-        {
-            foreach(ComboBox comboBox in comboBoxList)
-            {
-
-            }
-        }
     }
 }

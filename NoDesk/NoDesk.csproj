@@ -114,9 +114,10 @@
     <Compile Include="Dal\Database.cs" />
     <Compile Include="Dal\TicketDal.cs" />
     <Compile Include="Dal\UserDal.cs" />
-    <Compile Include="Models\IncidentTicket.cs" />
+    <Compile Include="Models\IncidentTicketModel.cs" />
     <Compile Include="Models\IncidentType.cs" />
     <Compile Include="Models\User.cs" />
+    <Compile Include="ViewModels\AddIncidentTicketModel.cs" />
     <Compile Include="ViewModels\DashboardViewModel.cs" />
     <Compile Include="ViewModels\LoginViewModel.cs" />
     <Compile Include="ViewModels\ShellViewModel.cs" />
