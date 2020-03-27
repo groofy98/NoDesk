@@ -41,7 +41,7 @@
 
         <!-- Submit -->
         <Button x:Name="LoginButton" Grid.Row="5" Grid.Column="1" FontSize="18" Grid.ColumnSpan="2" 
-                Background="#FF34A3FF" Foreground="White" FontWeight="Bold" Height="40" Margin="0 35 0 0" Cursor="Hand">
+                Background="#FF34A3FF" Foreground="White" FontWeight="Bold" Height="40" Margin="0 35 0 0">
             Login
         </Button>
         <!--<Button x:Name="LoginButton" Content="Log in" HorizontalAlignment="Left" Margin="349,331,0,0" VerticalAlignment="Top" Width="75"/>  -->

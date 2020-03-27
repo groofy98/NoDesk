@@ -16,12 +16,6 @@ namespace NoDesk.Dal
             return collection.Find(filter).ToList();
         }
 
-        public List<User> GetUserByUsername(string username) {
-            var collection = database.GetCollection<User>("users");
-            var filter = Builders<User>.Filter.Eq("Username", username); //filter to only get users with certain username
-            return collection.Find(filter).ToList();
-        }
-
         public void UpdateUser(User user)
         {
             var collection = database.GetCollection<User>("users");
