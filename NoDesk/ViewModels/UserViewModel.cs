@@ -11,6 +11,7 @@ namespace NoDesk.ViewModels
      public class UserViewModel : Screen
     {
         private BindableCollection<User> _users;
+        private ShellViewModel shellViewModel;
 
         public BindableCollection<User> Users
         {
@@ -20,9 +21,14 @@ namespace NoDesk.ViewModels
         }
 
 
-        public UserViewModel()
+        public UserViewModel(ShellViewModel shellViewModel)
         {
-            _users = new BindableCollection<User>(new UserDal().GetUsers());
+            Users = new BindableCollection<User>(new UserDal().GetUsers());
+            this.shellViewModel = shellViewModel;
+        }
+
+        public void AddNewUser() {
+
         }
     }
 }

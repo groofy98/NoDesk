@@ -1,4 +1,5 @@
 ﻿using Caliburn.Micro;
+using NoDesk.Dal;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,12 +24,12 @@ namespace NoDesk.ViewModels
                 NotifyOfPropertyChange(() => CanShowDashboard);
                 NotifyOfPropertyChange(() => CanShowUsers);
                 NotifyOfPropertyChange(() => CanShowTickets);
-            }
+            } //enable buttons when property 'loggedUser' is set
         }
 
 		public void ShowUsers()
 		{
-			ActivateItem(new UserViewModel());
+			ActivateItem(new UserViewModel(this));
 		}
 
 		public void ShowDashboard()
@@ -37,10 +38,11 @@ namespace NoDesk.ViewModels
 		}
 
         public void ShowTickets() {
-            ActivateItem(new DashboardViewModel(this));
+            ActivateItem(new IncidentTicketViewModel(this));
         }
 
-        public bool CanShowDashboard {
+        //caliburn convention: Can
+        public bool CanShowDashboard { 
             get {
                 if (LoggedUser == null) {
                     return false;
