@@ -7,35 +7,36 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
-        <ComboBox HorizontalAlignment="Left" Margin="292,66,0,0" VerticalAlignment="Top" Width="218" Name="IncidentDate">
+        <ComboBox HorizontalAlignment="Left" Margin="292,66,0,0" VerticalAlignment="Top" Width="218" x:Name="IncidentDate" 
+                  SelectedItem="{Binding Path=incidentTicket.Date, Mode=OneWayToSource}">
 
             <ComboBoxItem Content="Tea"></ComboBoxItem>
             <ComboBoxItem Content="Orange Juice"></ComboBoxItem>
             <ComboBoxItem Content="Milk"></ComboBoxItem>
             <ComboBoxItem Content="Iced Tea"></ComboBoxItem>
             <ComboBoxItem Content="Mango Shake"></ComboBoxItem>
+
         </ComboBox>
-        <ComboBox HorizontalAlignment="Left" Margin="292,239,0,0" VerticalAlignment="Top" Width="218" Name="IncidentType" BorderThickness="1">
+        <ComboBox HorizontalAlignment="Left" Margin="292,239,0,0" VerticalAlignment="Top" Width="218" x:Name="IncidentType" BorderThickness="1" SelectedItem="{Binding Path=incidentTicket.Type, Mode=OneWayToSource}">>
             <ComboBoxItem Content="Software"></ComboBoxItem>
             <ComboBoxItem Content="Hardware"></ComboBoxItem>
             <ComboBoxItem Content="Service"></ComboBoxItem>
-            <ComboBoxItem Content="Select type" IsSelected="True"></ComboBoxItem>
         </ComboBox>
-        <TextBox HorizontalAlignment="Left" Margin="292,136,0,0" VerticalAlignment="Top" Width="218" Name="IncidentReportedBy"/>
-        <ComboBox HorizontalAlignment="Left" Margin="292,170,0,0" VerticalAlignment="Top" Width="218" Name="IncidentPriority">
+        <TextBox HorizontalAlignment="Left" Margin="292,136,0,0" VerticalAlignment="Top" Width="218" x:Name="IncidentReportedBy" Text="{Binding Path=incidentTicket.By, Mode=OneWayToSource}"/>
+        <ComboBox HorizontalAlignment="Left" Margin="292,170,0,0" VerticalAlignment="Top" Width="218" x:Name="IncidentPriority" SelectedItem="{Binding Path=incidentTicket.Priority, Mode=OneWayToSource}">>
             <ComboBoxItem Content="Low"></ComboBoxItem>
             <ComboBoxItem Content="Normal"></ComboBoxItem>
             <ComboBoxItem Content="High"></ComboBoxItem>
         </ComboBox>
-        <ComboBox HorizontalAlignment="Left" Margin="292,205,0,0" VerticalAlignment="Top" Width="218" Name="IncidentDeadline">
+        <ComboBox HorizontalAlignment="Left" Margin="292,205,0,0" VerticalAlignment="Top" Width="218" x:Name="IncidentDeadline" SelectedItem="{Binding Path=incidentTicket.Deadline, Mode=OneWayToSource}">>
             <ComboBoxItem Content="7 days"></ComboBoxItem>
             <ComboBoxItem Content="14 days"></ComboBoxItem>
             <ComboBoxItem Content="28 days"></ComboBoxItem>
             <ComboBoxItem Content="6 months"></ComboBoxItem>
         </ComboBox>
-        <TextBox HorizontalAlignment="Left" Height="23" Margin="292,100,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="218" Name="IncidentSubject"/>
-        <TextBox HorizontalAlignment="Left" Height="137" Margin="292,275,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="218"/>
-        <Button Name="Cancel" Content="CANCEL" HorizontalAlignment="Left" Margin="292,420,0,0" VerticalAlignment="Top" Width="99" RenderTransformOrigin="0.142,0.82" Click="Cancel_Click">
+        <TextBox HorizontalAlignment="Left" Height="23" Margin="292,100,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="218" x:Name="IncidentSubject" Text="{Binding Path=incidentTicket.Subject, Mode=OneWayToSource}"/>
+        <TextBox HorizontalAlignment="Left" Height="137" Margin="292,275,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="218" x:Name="TicketDescription" Text="{Binding Path=incidentTicket.Description, Mode=OneWayToSource}"/>
+        <Button x:Name="CancelTicket" Content="CANCEL" HorizontalAlignment="Left" Margin="292,420,0,0" VerticalAlignment="Top" Width="99" RenderTransformOrigin="0.142,0.82">
             <Button.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform/>
@@ -45,7 +46,7 @@
                 </TransformGroup>
             </Button.RenderTransform>
         </Button>
-        <Button Name="SubmitTicket" Content="SUBMIT TICKET" HorizontalAlignment="Left" Margin="414,420,0,0" VerticalAlignment="Top" Width="96" RenderTransformOrigin="0.142,0.82" Click="SubmitTicket_Click"/>
+        <Button x:Name="SubmitTicket" Content="SUBMIT TICKET" HorizontalAlignment="Left" Margin="414,420,0,0" VerticalAlignment="Top" Width="96" RenderTransformOrigin="0.142,0.82"/>
 
     </Grid>
 </UserControl>

@@ -6,33 +6,30 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using NoDesk.Dal;
 
 namespace NoDesk
 {
     
     public class IncidentTicket
     {
-        public ObjectId incidentId { get; set; }
-        public BsonDateTime incidentDate { get; set; }
-        public IncidentType incidentType { get; set; }
-        public string reportedBy { get; set; }
-        public int priotity { get; set; }
-        public int incidentDeadline { get; set; }
+        public ObjectId Id { get; set; }
+        public DateTime Date { get; set; }
+        public IncidentType Type { get; set; }
+        public string By { get; set; }
+        public int Priority { get; set; }
+        public int Deadline { get; set; }
+        public string Subject { get; set; }
+        public string Description { get; set; }
 
-        public BsonDocument CreateBson()
+        public void SubmitTicket(IncidentTicket ticket)
         {
-            var document = new BsonDocument {
-                {"incident_id", this.incidentId },
-                {"date", this.incidentDate },
-                {"type", this.incidentType },
-                {"Reported by", this.reportedBy },
-                {"Priority", this.priotity },
-                {"Deadline", this.incidentDeadline }
-            };
-
-            return document;
+            TicketDal ticketDal = new TicketDal();
+            ticketDal.InsertUser(ticket);
         }
     }
+
+    
 
 
 }

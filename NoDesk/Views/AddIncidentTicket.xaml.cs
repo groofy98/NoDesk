@@ -20,32 +20,10 @@ namespace NoDesk.Views
     /// </summary>
     public partial class AddIncidentTicket : UserControl
     {
-        List<ComboBox> comboBoxList = new List<ComboBox>();
+        
         public AddIncidentTicket()
         {
             InitializeComponent();
-
-            comboBoxList = AddComboBoxes();
-            
-        }
-
-        public List<ComboBox> AddComboBoxes()
-        {
-            
-            comboBoxList.Add(IncidentDate);
-            comboBoxList.Add(IncidentDeadline);
-            comboBoxList.Add(IncidentPriority);
-            comboBoxList.Add(IncidentType);
-
-            return comboBoxList;
-        }
-
-        private void SubmitTicket_Click(object sender, RoutedEventArgs e)
-        {
-            foreach(ComboBox comboBox in comboBoxList)
-            {
-
-            }
         }
     }
 }

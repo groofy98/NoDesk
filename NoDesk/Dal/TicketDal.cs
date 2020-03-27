@@ -12,7 +12,7 @@ namespace NoDesk.Dal
         public void UpdateUser(IncidentTicket ticket)
         {
             var collection = database.GetCollection<IncidentTicket>("tickets");
-            var filter = Builders<IncidentTicket>.Filter.Eq("_id", ticket.incidentId);
+            var filter = Builders<IncidentTicket>.Filter.Eq("_id", ticket.Id);
             collection.ReplaceOne(filter, ticket);
         }
 
