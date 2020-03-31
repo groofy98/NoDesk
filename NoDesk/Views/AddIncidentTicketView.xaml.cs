@@ -16,12 +16,11 @@ using System.Windows.Shapes;
 namespace NoDesk.Views
 {
     /// <summary>
-    /// Interaction logic for AddIncidentTicket.xaml
+    /// Interaction logic for AddIncidentTicketView.xaml
     /// </summary>
-    public partial class AddIncidentTicket : UserControl
+    public partial class AddIncidentTicketView : UserControl
     {
-        
-        public AddIncidentTicket()
+        public AddIncidentTicketView()
         {
             InitializeComponent();
         }

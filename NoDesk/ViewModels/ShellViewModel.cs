@@ -37,9 +37,7 @@ namespace NoDesk.ViewModels
 			ActivateItem(new DashboardViewModel(this));
 		}
 
-        public void ShowTickets() {
-            ActivateItem(new IncidentTicketViewModel(this));
-        }
+       
 
         //caliburn convention: Can
         public bool CanShowDashboard { 
@@ -70,6 +68,11 @@ namespace NoDesk.ViewModels
                     return true;
                 }
             }
+        }
+
+        public void AddTicket()
+        {
+            ActivateItem(new AddIncidentTicketViewModel(this));
         }
     }
 }

@@ -31,5 +31,6 @@ namespace NoDesk.ViewModels {
                 MessageBox.Show("Wrong username or password. Please try again.");
             }                 
         }
+        
     }
 }
