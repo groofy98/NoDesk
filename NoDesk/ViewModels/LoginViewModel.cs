@@ -21,5 +21,6 @@ namespace NoDesk.ViewModels {
             this.shellViewModel.LoggedUser = new User();
             this.shellViewModel.ActivateItem(new DashboardViewModel(this.shellViewModel)); //show new usercontrol after login
         }
+        
     }
 }

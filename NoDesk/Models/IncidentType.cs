@@ -2,7 +2,7 @@
 {
     public enum IncidentType
     {
-        Software, Hardware, Service
+        Undefined, Software, Hardware, Service
     }
 
 }

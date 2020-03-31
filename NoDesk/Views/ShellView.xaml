@@ -26,20 +26,20 @@
             <RowDefinition Height="*"/>
             <RowDefinition Height="20"/>
         </Grid.RowDefinitions>
-        
-        <!--Row 1-->        
-        
+
+        <!--Row 1-->
+
         <!--Row 2-->
         <Button x:Name="ShowDashboard" Grid.Column="1" Grid.Row="2" MinWidth="200">
-           Dashboard
+            Dashboard
         </Button>
         <Button x:Name="ShowTickets" Grid.Column="3" Grid.Row="2" MinWidth="200">
-           Tickets
+            Tickets
         </Button>
         <Button x:Name="ShowUsers" Grid.Column="2" Grid.Row="2" MinWidth="200">
             Users
         </Button>
-        
+        <Button Content="Add Ticket" Grid.Column="5" HorizontalAlignment="Left" Margin="36,0,0,0" Grid.Row="2" VerticalAlignment="Top" Width="75" x:Name="AddTicket" RenderTransformOrigin="1.092,0.679"/>
         <!--Row 5-->
         <ContentControl Grid.Row="5" Grid.Column="1" Grid.ColumnSpan="5"
                         x:Name="ActiveItem"/>

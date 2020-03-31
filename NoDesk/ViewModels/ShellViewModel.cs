@@ -36,9 +36,7 @@ namespace NoDesk.ViewModels
 			ActivateItem(new DashboardViewModel(this));
 		}
 
-        public void ShowTickets() {
-            ActivateItem(new IncidentTicketViewModel(this));
-        }
+       
 
         public bool CanShowDashboard {
             get {
@@ -68,6 +66,11 @@ namespace NoDesk.ViewModels
                     return true;
                 }
             }
+        }
+
+        public void AddTicket()
+        {
+            ActivateItem(new AddIncidentTicketViewModel(this));
         }
     }
 }
