@@ -10,75 +10,49 @@ namespace NoDesk.ViewModels
     class AddIncidentTicketViewModel
     {
         ShellViewModel shellViewModel;
+        IncidentTicket _incidentTicket;
+
         public AddIncidentTicketViewModel(ShellViewModel shellViewModel)
         {
             this.shellViewModel = shellViewModel;
+            _incidentTicket = new IncidentTicket();
         }
-
-        private DateTime Date;
 
         public DateTime IncidentDate
         {
-            get { return Date; }
-            set { Date = value; _incidentTicket.Date = value; }
+            set { _incidentTicket.Date = value; }
         }
-
-        private string Subject;
 
         public string IncidentSubject
         {
-            get { return Subject; }
-            set { Subject = value; _incidentTicket.Subject = value; }
+            set { _incidentTicket.Subject = value; }
         }
-
-        private string User;
 
         public string IncidentReportedBy
         {
-            get { return User; }
-            set { User = value; _incidentTicket.By = value; }
+            set { _incidentTicket.By = value; }
         }
-
-        private string Priority;
 
         public string IncidentPriority
         {
-            get { return Priority; }
-            set { Priority = value; _incidentTicket.Priority = value; }
+            set { _incidentTicket.Priority = value; }
         }
 
         private string Deadline;
 
         public string IncidentDeadline
         {
-            get { return Deadline; }
-            set { Deadline = value; _incidentTicket.Deadline = value;  }
+            set { _incidentTicket.Deadline = value;  }
         }
-
-        private IncidentType Type;
 
         public IncidentType IncidentType
         {
-            get { return Type; }
-            set {
-                Type = value;
-                _incidentTicket.Type = value;
-            }
+            set { _incidentTicket.Type = value; }
         }
-
-        private string Description;
 
         public string IncidentDescription
         {
-            get { return Description; }
-            set { Description = value; _incidentTicket.Description = value; }
-        }
-
-        private IncidentTicket _incidentTicket = new IncidentTicket();
-
-        public bool CanSubmitTicket(DateTime date, IncidentType type, string user, int priority, string deadline, string subject, string description)
-        {
-            return (date == null || type == 0|| user == null || priority == 0 || deadline == null || subject == null || description == null) ;
+            set { _incidentTicket.Description = value; }
         }
 
         public void SubmitTicket()
