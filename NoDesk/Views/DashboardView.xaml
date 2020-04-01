@@ -31,15 +31,17 @@
         <!--Row 1-->
         <TextBlock Grid.Row="1" Grid.Column="1" FontFamily="Arial" FontSize="32">Current Incidents</TextBlock>
         <Button x:Name="ShowList" Grid.Row="1" Grid.Column="6" Width="140" Height="40" Background="LightBlue" Foreground="White" FontSize="13">Show List</Button>
-        
+
         <StackPanel Orientation="Horizontal" Grid.Row="5" Grid.Column="1" Grid.ColumnSpan="5">
             <StackPanel Width="300" Height="300">
-                <TextBlock Text="Unresolved incidents" ></TextBlock>
+                <TextBlock HorizontalAlignment="Center" FontWeight="Bold" FontSize="16"  Text="Unresolved incidents" ></TextBlock>
+                <TextBlock HorizontalAlignment="Center" FontSize="13"  Text="Unresolved incidents" ></TextBlock>
                 <Canvas Width="170" Height="170" Margin="0 15">
-                    <TextBlock x:Name="UnresolvedLabel" HorizontalAlignment="Center"  VerticalAlignment="Center" RenderTransformOrigin="0.268,7.088" Canvas.Left="75" Canvas.Top="75" ><Run Text="9/10"/></TextBlock>
+                    <TextBlock x:Name="UnresolvedLabel" HorizontalAlignment="Center" FontSize="45" VerticalAlignment="Center" RenderTransformOrigin="0.268,7.088" Canvas.Left="39" Canvas.Top="51" ><Run Text="9/10"/></TextBlock>
                     <lvc:PieChart x:Name="Chart" Series="{Binding SeriesCollection}" 
                       InnerRadius="50" Width="170" Height="170" 
-                      DisableAnimations="True" Background="Transparent"                                                        
+                      DisableAnimations="True" Background="Transparent" 
+                      HoverPushOut="0" StartingRotationAngle="0" SeriesColors="{Binding Colours}"
                       />
                 </Canvas>
             </StackPanel>

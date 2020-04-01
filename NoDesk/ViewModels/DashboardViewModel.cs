@@ -14,9 +14,7 @@ namespace NoDesk.ViewModels
     {
         ShellViewModel shellViewModel;
 
-        private ObservableValue _ticketsTotal;
-
-        
+        private ObservableValue _ticketsTotal;        
 
         public ObservableValue TicketsTotal
         {
@@ -51,7 +49,7 @@ namespace NoDesk.ViewModels
         public SeriesCollection SeriesCollection { get; set; }
 
         public DashboardViewModel(ShellViewModel shellViewModel) {
-            this.shellViewModel = shellViewModel;
+            this.shellViewModel = shellViewModel;            
 
             TicketsOpen = new ObservableValue(7);
             TicketsOpen.PropertyChanged += (obj, args) =>
@@ -67,13 +65,15 @@ namespace NoDesk.ViewModels
                 {
                     Title = "total",
                     Values = new ChartValues<ObservableValue> {TicketsTotal},
-                    DataLabels = false
+                    DataLabels = false,
+                    Fill = System.Windows.Media.Brushes.Orange
                 },
                 new PieSeries
                 {
                     Title = "open",
                     Values = new ChartValues<ObservableValue> { TicketsOpen },
-                    DataLabels = false
+                    DataLabels = false,
+                    Fill = System.Windows.Media.Brushes.DarkSlateGray
                 }
             };
         }
