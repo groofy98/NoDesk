@@ -23,6 +23,7 @@
             <RowDefinition Height="auto"/>
             <RowDefinition Height="auto"/>
             <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="20"/>
         </Grid.RowDefinitions>
@@ -39,8 +40,12 @@
         <Button x:Name="ShowUsers" Grid.Column="2" Grid.Row="2" MinWidth="200">
             Users
         </Button>
+        <Button x:Name="LogOut" Grid.Column="5" Grid.Row="2" MinWidth="50" Margin="60 0 20 0" Background="#FF34A3FF" Foreground="White" FontWeight="Bold" BorderBrush="#FF34A3FF" Cursor="Hand">
+            Log out
+        </Button>
         <!--Row 5-->
         <ContentControl Grid.Row="5" Grid.Column="1" Grid.ColumnSpan="5"
                         x:Name="ActiveItem"/>
+
     </Grid>
 </Window>

@@ -27,6 +27,11 @@ namespace NoDesk.ViewModels
             } //enable buttons when property 'loggedUser' is set
         }
 
+        public void LogOut() {
+            LoggedUser = null;
+            ActivateItem(new LoginViewModel(this));
+        }
+
 		public void ShowUsers()
 		{
 			ActivateItem(new UserViewModel(this));
@@ -54,7 +59,7 @@ namespace NoDesk.ViewModels
         public bool CanShowDashboard {
             get {
                 if (LoggedUser != null) {
-                    if (LoggedUser.Type == UserType.Employee) {
+                    if (LoggedUser.Type == UserType.Admin) {
                         return true;
                     }
                 }
@@ -65,7 +70,7 @@ namespace NoDesk.ViewModels
         public bool CanShowUsers {
             get {
                 if (LoggedUser != null) {
-                    if (LoggedUser.Type == UserType.Employee) {
+                    if (LoggedUser.Type == UserType.Admin) {
                         return true;
                     }
                 }
