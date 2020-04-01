@@ -20,7 +20,7 @@ namespace NoDesk.ViewModels
 
         public DateTime IncidentDate
         {
-            set { _incidentTicket.Date = value; }
+            set { _incidentTicket.Date = value.Date; }
         }
 
         public string IncidentSubject
@@ -38,11 +38,9 @@ namespace NoDesk.ViewModels
             set { _incidentTicket.Priority = value; }
         }
 
-        private string Deadline;
-
         public DateTime IncidentDeadline
         {
-            set { _incidentTicket.Deadline = value;  }
+            set { _incidentTicket.Deadline = value.Date;  }
         }
 
         public IncidentType IncidentType

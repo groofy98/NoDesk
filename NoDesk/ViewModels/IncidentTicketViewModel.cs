@@ -18,6 +18,9 @@ namespace NoDesk.ViewModels {
 
         public IncidentTicketViewModel(ShellViewModel shellViewModel) {
             IncidentTickets = new BindableCollection<IncidentTicket>(new TicketDal().GetTickets());
+            foreach (var ticket in IncidentTickets) {
+                Console.WriteLine(ticket.PrintOutTickets());
+            }
             this.shellViewModel = shellViewModel;
         }
 
