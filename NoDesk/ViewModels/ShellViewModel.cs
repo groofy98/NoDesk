@@ -38,7 +38,7 @@ namespace NoDesk.ViewModels
 		}
 
         public void ShowTickets() {
-           
+            ActivateItem(new IncidentTicketViewModel(this));
         }
 
         //caliburn convention: Can
