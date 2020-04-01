@@ -71,10 +71,5 @@ namespace NoDesk.ViewModels
                 }
             }
         }
-
-        public void AddTicket()
-        {
-            ActivateItem(new AddIncidentTicketViewModel(this));
-        }
     }
 }
