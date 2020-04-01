@@ -29,6 +29,6 @@
         <Button x:Name="CreateIncident" Grid.Row="1" Grid.Column="3" Margin="0,6,10,5" HorizontalAlignment="Right" Width="140" Background="#169bd5">CREATE INCIDENT</Button>
 
         <!-- Row 3 -->
-        <DataGrid Grid.Row="2" Grid.Column="0" x:Name="Tickets" Grid.RowSpan="4" Grid.ColumnSpan="4" HorizontalAlignment="Left"/>
+        <DataGrid Grid.Row="2" Grid.Column="0" x:Name="IncidentTickets" Grid.RowSpan="4" Grid.ColumnSpan="4" HorizontalAlignment="Left"/>
     </Grid>
 </UserControl>

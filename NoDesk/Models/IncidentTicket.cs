@@ -30,6 +30,26 @@ namespace NoDesk
             TicketDal ticketDal = new TicketDal();
             ticketDal.InsertUser(incidentTicket);
         }
+
+        public BsonDocument CreateBson()
+        {
+            var document = new BsonDocument {
+                {"incident_id", this.Id },
+                {"date", this.Date },
+                {"type", this.Type },
+                {"Reported by", this.By },
+                {"Priority", this.Priority },
+                {"Deadline", this.Deadline },
+                {"Subject", this.Subject },  
+                {"Description", this.Description }
+            };
+
+            return document;
+        }
+
+        public string PrintOutTickets() {
+            return ("id: " + Id.ToString());
+        }
     }
 
 
