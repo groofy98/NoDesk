@@ -43,6 +43,10 @@ namespace NoDesk
 
             return document;
         }
+
+        public string PrintOutTickets() {
+            return ("id: " + Id.ToString());
+        }
     }
 
 
