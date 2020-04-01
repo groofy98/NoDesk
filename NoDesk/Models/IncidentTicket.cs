@@ -18,30 +18,17 @@ namespace NoDesk
         public IncidentType Type { get; set; }
         public string By { get; set; }
         public string Priority { get; set; }
-        public string Deadline { get; set; }
+        public DateTime Deadline { get; set; }
         public string Subject { get; set; }
         public string Description { get; set; }
+        public bool Status { get; set; }
 
         public void SubmitTicket(IncidentTicket incidentTicket)
         {
+            incidentTicket.Status = false;
+
             TicketDal ticketDal = new TicketDal();
             ticketDal.InsertUser(incidentTicket);
-        }
-
-        public BsonDocument CreateBson()
-        {
-            var document = new BsonDocument {
-                {"incident_id", this.Id },
-                {"date", this.Date },
-                {"type", this.Type },
-                {"Reported by", this.By },
-                {"Priority", this.Priority },
-                {"Deadline", this.Deadline },
-                {"Subject", this.Subject },  
-                {"Description", this.Description }
-            };
-
-            return document;
         }
     }
 

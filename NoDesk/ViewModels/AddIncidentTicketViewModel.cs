@@ -40,7 +40,7 @@ namespace NoDesk.ViewModels
 
         private string Deadline;
 
-        public string IncidentDeadline
+        public DateTime IncidentDeadline
         {
             set { _incidentTicket.Deadline = value;  }
         }
