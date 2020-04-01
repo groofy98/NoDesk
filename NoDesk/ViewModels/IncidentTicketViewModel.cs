@@ -17,12 +17,12 @@ namespace NoDesk.ViewModels {
         }
 
         public IncidentTicketViewModel(ShellViewModel shellViewModel) {
-            //IncidentTickets = new BindableCollection<IncidentTicket>(new TicketDal().GetTickets());
+            IncidentTickets = new BindableCollection<IncidentTicket>(new TicketDal().GetTickets());
             this.shellViewModel = shellViewModel;
         }
 
         public void CreateIncident() {
-
+            shellViewModel.ActivateItem(new AddIncidentTicketViewModel(shellViewModel));
         }
     }
 }
