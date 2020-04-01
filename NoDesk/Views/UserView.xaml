@@ -29,6 +29,10 @@
         <Button x:Name="AddNewUser" Grid.Row="1" Grid.Column="3" Margin="0,6,10,5" HorizontalAlignment="Right" Width="140" Background="#95f204">+ ADD NEW USER</Button>
 
         <!-- Row 3 -->
-        <DataGrid Grid.Row="2" Grid.Column="0" x:Name="Users" Grid.RowSpan="4" Grid.ColumnSpan="4" HorizontalAlignment="Left"/>
+        <DataGrid Grid.Row="2" Grid.Column="0" ItemsSource="{Binding Users}" x:Name="Users" Grid.RowSpan="4" Grid.ColumnSpan="4" HorizontalAlignment="Left" AutoGenerateColumns="False">
+            <DataGrid.Columns>
+                <DataGridTextColumn Binding="{Binding FirstName}" />
+            </DataGrid.Columns>
+        </DataGrid>
     </Grid>
 </UserControl>
