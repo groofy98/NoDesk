@@ -26,10 +26,19 @@ namespace NoDesk.ViewModels {
             List<User> users = userDAL.GetUserByUsername(usernameInput);
             if (users.Count > 0 && users[0].Password == passwordInput) { //user is found and password matches
                 this.shellViewModel.LoggedUser = users[0];
-                this.shellViewModel.ActivateItem(new DashboardViewModel(this.shellViewModel)); //show dashboard after login              
+
+                if (shellViewModel.LoggedUser.Type == UserType.Employee) {
+                    this.shellViewModel.ActivateItem(new DashboardViewModel(this.shellViewModel)); //if employee logs on, show dashboard after login    
+                } else {
+                    this.shellViewModel.ActivateItem(new IncidentTicketViewModel(this.shellViewModel)); //show tickets after login    
+                }                         
             } else {
                 MessageBox.Show("Wrong username or password. Please try again.");
             }                 
+        }
+
+        public void OnPasswordChanged(PasswordBox source) { //caliburn method, when password is changed in pwbox it dynamically updates the passwordInput property
+            passwordInput = source.Password;
         }
         
     }

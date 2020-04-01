@@ -42,33 +42,34 @@ namespace NoDesk.ViewModels
         }
 
         //caliburn convention: Can
-        public bool CanShowDashboard { 
-            get {
-                if (LoggedUser == null) {
-                    return false;
-                } else {
-                    return true;
-                }
-            } 
-        }
-
         public bool CanShowTickets {
             get {
-                if (LoggedUser == null) {
-                    return false;
-                } else {
+                if (LoggedUser != null) {
                     return true;
                 }
+                return false;
+            }
+        }
+
+        public bool CanShowDashboard {
+            get {
+                if (LoggedUser != null) {
+                    if (LoggedUser.Type == UserType.Employee) {
+                        return true;
+                    }
+                }
+                return false;
             }
         }
 
         public bool CanShowUsers {
             get {
-                if (LoggedUser == null) {
-                    return false;
-                } else {
-                    return true;
+                if (LoggedUser != null) {
+                    if (LoggedUser.Type == UserType.Employee) {
+                        return true;
+                    }
                 }
+                return false;
             }
         }
     }
