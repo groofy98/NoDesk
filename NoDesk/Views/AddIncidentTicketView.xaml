@@ -9,7 +9,7 @@
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid RenderTransformOrigin="0.179,1.884">
         <DatePicker HorizontalAlignment="Left" Margin="189,10,0,0" VerticalAlignment="Top" Width="218" x:Name="TicketDate" 
-                  SelectedDate="{Binding Path=IncidentDate, Mode=OneWayToSource}"/>
+                  SelectedDate="{Binding Path=IncidentDate, Mode=OneWayToSource}" DisplayDateEnd="{x:Static sys:DateTime.Today}"/>
         
         <ComboBox HorizontalAlignment="Left" Margin="189,191,0,0" VerticalAlignment="Top" Width="218" x:Name="Type" BorderThickness="1" SelectedValue="{Binding Path=IncidentType, Mode=OneWayToSource}" SelectedValuePath="Content">>
             <ComboBoxItem Content="Software"></ComboBoxItem>
