@@ -34,5 +34,11 @@ namespace NoDesk.Dal
             var collection = database.GetCollection<User>("users");
             collection.InsertOne(user);
         }
+
+        public void DeleteUser(User user) {
+            var collection = database.GetCollection<User>("users");
+            var filter = Builders<User>.Filter.Eq("_id", user.id);
+            collection.DeleteOne(filter);
+        }
     }
 }

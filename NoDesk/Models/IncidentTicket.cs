@@ -13,7 +13,7 @@ namespace NoDesk
     
     public class IncidentTicket
     {
-        public ObjectId Id;
+        public ObjectId Id { get; set; }
         public DateTime Date { get; set; }
         public IncidentType Type { get; set; }
         public string By { get; set; }
@@ -28,7 +28,7 @@ namespace NoDesk
             incidentTicket.Status = false;
 
             TicketDal ticketDal = new TicketDal();
-            ticketDal.InsertUser(incidentTicket);
+            ticketDal.InsertTicket(incidentTicket);
         }
 
         public BsonDocument CreateBson()
@@ -50,6 +50,7 @@ namespace NoDesk
         public string PrintOutTickets() {
             return ("id: " + Id.ToString());
         }
+
     }
 
 
