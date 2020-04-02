@@ -36,7 +36,7 @@
         <Label x:Name="Title" Content="User Management" FontSize="24" FontWeight="Bold" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3"/>
 
         <!-- Row 2 -->
-        <TextBox x:Name="Filter" Grid.Row="1" Grid.Column="0" Margin="10,9,0,9" HorizontalAlignment="Left" Width="200"/>
+        <TextBox Text="Filter by email" x:Name="Filter" Grid.Row="1" Grid.Column="0" Margin="10,9,0,9" HorizontalAlignment="Left" Width="200" GotFocus="Filter_GotFocus" LostFocus="Filter_LostFocus"/>
         <Button x:Name="AddNewUser" Grid.Row="1" Grid.Column="3" Margin="0,6,10,5" HorizontalAlignment="Right" Width="140" Background="#95f204">+ ADD NEW USER</Button>
 
         <!-- Row 3 -->

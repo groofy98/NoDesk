@@ -22,5 +22,17 @@ namespace NoDesk.Views
         public UserView() {
             InitializeComponent();
         }
+
+        private void Filter_GotFocus(object sender, RoutedEventArgs e) {
+            if (Filter.Text == "Filter by email") {
+                Filter.Text = "";
+            }
+        }
+
+        private void Filter_LostFocus(object sender, RoutedEventArgs e) {
+            if (Filter.Text == "") {
+                Filter.Text = "Filter by email";
+            } 
+        }
     }
 }

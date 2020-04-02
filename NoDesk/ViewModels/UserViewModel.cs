@@ -13,6 +13,8 @@ namespace NoDesk.ViewModels
         private BindableCollection<User> _users;
         private User _selectedUser;
         private ShellViewModel shellViewModel;
+        private string _filter = "Filter by email";
+        private List<User> hidedUsers;
 
         public BindableCollection<User> Users
         {
@@ -32,14 +34,22 @@ namespace NoDesk.ViewModels
             }
         }
 
+        public string Filter {
+            get { return _filter; }
+            set {
+                _filter = value;
+                FilterUsers();
+            }
+        }
+
         public UserViewModel(ShellViewModel shellViewModel) {
             this.shellViewModel = shellViewModel;
 
             Users = new BindableCollection<User>(new UserDal().GetUsers());
+            hidedUsers = new List<User>();
         }
 
         public void AddNewUser() {
-
         }
 
         public void SaveUser() {
@@ -72,6 +82,53 @@ namespace NoDesk.ViewModels
 
         public bool CanDeleteUser {
             get { return !(SelectedUser == null); }
+        }
+
+        public void FilterUsers() {
+            if (Filter == "Filter by email") {
+                return;
+            }
+
+            if (Filter == "") {
+                foreach (User user in hidedUsers) {
+                    Users.Add(user);
+                }
+
+                hidedUsers = new List<User>();
+                return;
+            }
+
+            List<User> removedUsers = new List<User>();
+
+            if (hidedUsers.Count > 0 ) {
+                foreach (User user in hidedUsers) {
+                    if (user.MailAddress.Contains(Filter)) {
+                        Users.Add(user);
+                        removedUsers.Add(user);
+                    }
+                }
+
+                if (removedUsers.Count > 0) {
+                    foreach (User user in removedUsers) {
+                        hidedUsers.Remove(user);
+                    }
+                }
+
+                removedUsers = new List<User>();
+            }
+
+            foreach (User user in Users) {
+                if (!user.MailAddress.Contains(Filter)) {
+                    hidedUsers.Add(user);
+                    removedUsers.Add(user);
+                }
+            }
+
+            if (removedUsers.Count > 0) {
+                foreach (User user in removedUsers) {
+                    Users.Remove(user);
+                }
+            }
         }
     }
 }

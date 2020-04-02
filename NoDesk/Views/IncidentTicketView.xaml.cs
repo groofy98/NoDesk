@@ -23,5 +23,16 @@ namespace NoDesk.Views {
             InitializeComponent();
         }
 
+        private void Filter_GotFocus(object sender, RoutedEventArgs e) {
+            if (Filter.Text == "Filter by subject") {
+                Filter.Text = "";
+            }
+        }
+
+        private void Filter_LostFocus(object sender, RoutedEventArgs e) {
+            if (Filter.Text == "") {
+                Filter.Text = "Filter by subject";
+            }
+        }
     }
 }
