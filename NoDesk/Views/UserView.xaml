@@ -3,9 +3,20 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:NoDesk.Views"
+             xmlns:local="clr-namespace:NoDesk"
+             xmlns:sys="clr-namespace:System;assembly=mscorlib"
              mc:Ignorable="d"              
              d:DesignHeight="450" Background="White" d:DesignWidth="800">
+
+    <UserControl.Resources>
+        <ObjectDataProvider x:Key="UserType" MethodName="GetValues"
+                        ObjectType="{x:Type sys:Enum}">
+            <ObjectDataProvider.MethodParameters>
+                <x:Type TypeName="local:UserType"/>
+            </ObjectDataProvider.MethodParameters>
+        </ObjectDataProvider>
+    </UserControl.Resources>
+    
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="211"/>
@@ -36,7 +47,18 @@
                 <DataGridTextColumn Header="First name" Binding="{Binding FirstName}" />
                 <DataGridTextColumn Header="Last name" Binding="{Binding LastName}" />
                 <DataGridTextColumn Header="Username" Binding="{Binding Username}" />
-                <DataGridTextColumn Header="Type" Binding="{Binding Type}" />
+                <DataGridTemplateColumn Header="Type">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding Type}"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                    <DataGridTemplateColumn.CellEditingTemplate>
+                        <DataTemplate>
+                            <ComboBox ItemsSource="{Binding Source={StaticResource UserType}}" SelectedItem="{Binding Type}" />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellEditingTemplate>
+                </DataGridTemplateColumn>
                 <DataGridTextColumn Header="E-mail" Binding="{Binding MailAddress}" />
                 <DataGridTextColumn Header="Phone nummer" Binding="{Binding PhoneNumber}" />
                 <DataGridTextColumn Header="Location" Binding="{Binding Location}" />

@@ -3,10 +3,20 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:NoDesk.Views"
-             xmlns:cal="http://www.caliburnproject.org"
+             xmlns:local="clr-namespace:NoDesk"
+             xmlns:sys="clr-namespace:System;assembly=mscorlib"
              mc:Ignorable="d" 
              d:DesignHeight="450" Background="White" d:DesignWidth="800">
+
+    <UserControl.Resources>
+        <ObjectDataProvider x:Key="IncidentType" MethodName="GetValues"
+                        ObjectType="{x:Type sys:Enum}">
+            <ObjectDataProvider.MethodParameters>
+                <x:Type TypeName="local:IncidentType"/>
+            </ObjectDataProvider.MethodParameters>
+        </ObjectDataProvider>
+    </UserControl.Resources>
+
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="211"/>
@@ -35,11 +45,44 @@
                   x:Name="IncidentTickets" Grid.ColumnSpan="4" HorizontalAlignment="Left" AutoGenerateColumns="False"
                   SelectionMode="Single" CanUserAddRows="False" CanUserDeleteRows="False">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Date" Binding="{Binding Date, StringFormat=d}" />
-                <DataGridTextColumn Header="Type" Binding="{Binding Type}" />
+                <DataGridTemplateColumn Header="Date">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding Date, StringFormat=d}"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                    <DataGridTemplateColumn.CellEditingTemplate>
+                        <DataTemplate>
+                            <DatePicker SelectedDate="{Binding Date}" DisplayDateStart="{Binding Date}" MaxWidth="100"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellEditingTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn Header="Type">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding Type}"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                    <DataGridTemplateColumn.CellEditingTemplate>
+                        <DataTemplate>
+                            <ComboBox ItemsSource="{Binding Source={StaticResource IncidentType}}" SelectedItem="{Binding Type}" />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellEditingTemplate>
+                </DataGridTemplateColumn>
                 <DataGridTextColumn Header="By" Binding="{Binding By}" />
                 <DataGridTextColumn Header="Priority" Binding="{Binding Priority}" />
-                <DataGridTextColumn Header="Deadline" Binding="{Binding Deadline, StringFormat=d}" />
+                <DataGridTemplateColumn Header="Deadline">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding Deadline, StringFormat=d}"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                    <DataGridTemplateColumn.CellEditingTemplate>
+                        <DataTemplate>
+                            <DatePicker SelectedDate="{Binding Deadline}" DisplayDateStart="{Binding Deadline}" MaxWidth="100"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellEditingTemplate>
+                </DataGridTemplateColumn>
                 <DataGridTextColumn Header="Subject" Binding="{Binding Subject}" />
                 <DataGridTextColumn Header="Description" Binding="{Binding Description}" />
                 <DataGridCheckBoxColumn Header="Status" Binding="{Binding Status}" />
