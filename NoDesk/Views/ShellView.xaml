@@ -14,6 +14,7 @@
             <ColumnDefinition Width="Auto"/>
             <ColumnDefinition Width="Auto"/>
             <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="Auto"/>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="20"/>
         </Grid.ColumnDefinitions>
@@ -40,7 +41,7 @@
         <Button x:Name="ShowUsers" Grid.Column="2" Grid.Row="2" MinWidth="200">
             Users
         </Button>
-        <Button x:Name="LogOut" Grid.Column="5" Grid.Row="2" MinWidth="50" Margin="60 0 20 0" Background="#FF34A3FF" Foreground="White" FontWeight="Bold" BorderBrush="#FF34A3FF" Cursor="Hand">
+        <Button x:Name="LogOut" Grid.Column="5" Grid.Row="2" MinWidth="70" Margin="60 0 0 0" Background="#FF34A3FF" Foreground="White" FontWeight="Bold" BorderBrush="#FF34A3FF" Cursor="Hand">
             Log out
         </Button>
         <!--Row 5-->

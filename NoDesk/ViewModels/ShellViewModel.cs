@@ -58,24 +58,20 @@ namespace NoDesk.ViewModels
 
         public bool CanShowDashboard {
             get {
-                if (LoggedUser != null) {
-                    if (LoggedUser.Type == UserType.Admin) {
+                if (LoggedUser != null && LoggedUser.Type == UserType.Admin) {
                         return true;
-                    }
                 }
                 return false;
-            }
+            }             
         }
 
         public bool CanShowUsers {
             get {
-                if (LoggedUser != null) {
-                    if (LoggedUser.Type == UserType.Admin) {
+                if (LoggedUser != null &&LoggedUser.Type == UserType.Admin) {
                         return true;
-                    }
                 }
                 return false;
-            }
+            }              
         }
     }
 }
