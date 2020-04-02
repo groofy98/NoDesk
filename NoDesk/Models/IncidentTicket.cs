@@ -28,7 +28,7 @@ namespace NoDesk
             incidentTicket.Status = false;
 
             TicketDal ticketDal = new TicketDal();
-            ticketDal.InsertUser(incidentTicket);
+            ticketDal.InsertTicket(incidentTicket);
         }
 
         public BsonDocument CreateBson()
@@ -50,6 +50,7 @@ namespace NoDesk
         public string PrintOutTickets() {
             return ("id: " + Id.ToString());
         }
+
     }
 
 

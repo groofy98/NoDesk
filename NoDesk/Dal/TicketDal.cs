@@ -13,17 +13,23 @@ namespace NoDesk.Dal {
             return collection.Find(filter).ToList();
         }
     
-        public void UpdateUser(IncidentTicket ticket)
+        public void UpdateTicket(IncidentTicket ticket)
         {
             var collection = database.GetCollection<IncidentTicket>("tickets");
             var filter = Builders<IncidentTicket>.Filter.Eq("_id", ticket.Id);
             collection.ReplaceOne(filter, ticket);
         }
 
-        public void InsertUser(IncidentTicket ticket)
+        public void InsertTicket(IncidentTicket ticket)
         {
             var collection = database.GetCollection<IncidentTicket>("tickets");
             collection.InsertOne(ticket);
+        }
+
+        public void DeleteTicket(IncidentTicket ticket) {
+            var collection = database.GetCollection<IncidentTicket>("tickets");
+            var filter = Builders<IncidentTicket>.Filter.Eq("_id", ticket.Id);
+            collection.DeleteOne(filter);
         }
     }
 }
