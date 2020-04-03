@@ -25,5 +25,37 @@ namespace NoDesk.Dal {
             var collection = database.GetCollection<IncidentTicket>("tickets");
             collection.InsertOne(ticket);
         }
+
+
+        public int GetTotalTicketAmount()
+        {
+            var collection = database.GetCollection<IncidentTicket>("tickets");
+            var filter = Builders<IncidentTicket>.Filter.Empty;            
+            return (int) collection.Find(filter).CountDocuments();
+        }
+
+        public int GetSolvedTicketAmount()
+        {
+            var collection = database.GetCollection<IncidentTicket>("tickets");
+            var filter = Builders<IncidentTicket>.Filter.Eq("Status", true);
+            return (int)collection.Find(filter).CountDocuments();
+        }
+
+        public int GetOpenTicketAmount()
+        {
+            var collection = database.GetCollection<IncidentTicket>("tickets");
+            var filter = Builders<IncidentTicket>.Filter.Eq("Status", false);
+            return (int)collection.Find(filter).CountDocuments();
+        }
+
+        public int GetTicketPastDeadline()
+        {
+            var collection = database.GetCollection<IncidentTicket>("tickets");
+            var filter = Builders<IncidentTicket>.Filter.Lte("Deadline", DateTime.Now);
+            filter = filter & Builders<IncidentTicket>.Filter.Eq("Status", false);
+            return (int)collection.Find(filter).CountDocuments();
+        }
+
+
     }
 }
