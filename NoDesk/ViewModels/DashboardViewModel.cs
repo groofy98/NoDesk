@@ -2,6 +2,7 @@
 using LiveCharts;
 using LiveCharts.Defaults;
 using LiveCharts.Wpf;
+using NoDesk.Dal;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,6 +14,15 @@ namespace NoDesk.ViewModels
     public class DashboardViewModel : Screen
     {
         ShellViewModel shellViewModel;
+
+        private ObservableValue _ticketsSolved;
+
+        public ObservableValue TicketsSolved
+        {
+            get { return new ObservableValue(_ticketsTotal.Value - _ticketsOpen.Value); }
+            
+        }
+
 
         private ObservableValue _ticketsTotal;        
 
@@ -33,6 +43,7 @@ namespace NoDesk.ViewModels
             set { _ticketsOpen = value;                
                 NotifyOfPropertyChange(() => UnresolvedLabel);
                 NotifyOfPropertyChange(() => TicketsOpen);
+                NotifyOfPropertyChange(() => TicketsSolved);
             }
         }
 
@@ -42,36 +53,38 @@ namespace NoDesk.ViewModels
 
         public void ShowList()
         {
-                         
-            TicketsTotal.Value = TicketsTotal.Value + 1;            
+            this.shellViewModel.ShowTickets();            
         }
 
         public SeriesCollection SeriesCollection { get; set; }
 
         public DashboardViewModel(ShellViewModel shellViewModel) {
-            this.shellViewModel = shellViewModel;            
+            this.shellViewModel = shellViewModel;
+            TicketDal ticketDal = new TicketDal();
+            Console.WriteLine("Amount of tickets: " + ticketDal.GetTotalTicketAmount());
+            Console.WriteLine("Tickets past deadline: " + ticketDal.GetTicketPastDeadline());
 
-            TicketsOpen = new ObservableValue(7);
+            TicketsOpen = new ObservableValue(ticketDal.GetOpenTicketAmount());
             TicketsOpen.PropertyChanged += (obj, args) =>
             { NotifyOfPropertyChange(() => UnresolvedLabel); };
 
-            TicketsTotal = new ObservableValue(15);
+            TicketsTotal = new ObservableValue(ticketDal.GetTotalTicketAmount());
             TicketsTotal.PropertyChanged += (obj, args) =>
-            { NotifyOfPropertyChange(() => UnresolvedLabel); };
+            { NotifyOfPropertyChange(() => UnresolvedLabel); };            
 
             SeriesCollection = new SeriesCollection
             {
                 new PieSeries
                 {
-                    Title = "total",
-                    Values = new ChartValues<ObservableValue> {TicketsTotal},
+                    Title = "open",
+                    Values = new ChartValues<ObservableValue> {TicketsOpen},
                     DataLabels = false,
                     Fill = System.Windows.Media.Brushes.Orange
                 },
                 new PieSeries
                 {
-                    Title = "open",
-                    Values = new ChartValues<ObservableValue> { TicketsOpen },
+                    Title = "solved",
+                    Values = new ChartValues<ObservableValue> { TicketsSolved },
                     DataLabels = false,
                     Fill = System.Windows.Media.Brushes.DarkSlateGray
                 }
