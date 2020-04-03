@@ -34,5 +34,9 @@ namespace NoDesk.Views {
                 Filter.Text = "Filter by subject";
             }
         }
+
+        private void IncidentTickets_MouseDoubleClick(object sender, MouseButtonEventArgs e) {
+            ShowIncidentTicket.RaiseEvent(new RoutedEventArgs(Button.ClickEvent));
+        }
     }
 }

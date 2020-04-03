@@ -22,6 +22,7 @@ namespace NoDesk
         public string Subject { get; set; }
         public string Description { get; set; }
         public bool Status { get; set; }
+        public string Solution { get; set; }
 
         public void SubmitTicket(IncidentTicket incidentTicket)
         {

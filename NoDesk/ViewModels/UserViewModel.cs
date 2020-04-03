@@ -102,7 +102,7 @@ namespace NoDesk.ViewModels
 
             if (hidedUsers.Count > 0 ) {
                 foreach (User user in hidedUsers) {
-                    if (user.MailAddress.Contains(Filter)) {
+                    if (user.MailAddress.ToUpper().Contains(Filter.ToUpper())) {
                         Users.Add(user);
                         removedUsers.Add(user);
                     }
@@ -118,7 +118,7 @@ namespace NoDesk.ViewModels
             }
 
             foreach (User user in Users) {
-                if (!user.MailAddress.Contains(Filter)) {
+                if (!user.MailAddress.ToUpper().Contains(Filter.ToUpper())) {
                     hidedUsers.Add(user);
                     removedUsers.Add(user);
                 }
