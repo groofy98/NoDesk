@@ -20,7 +20,6 @@ namespace NoDesk.ViewModels {
             set {
                 _selectedIncidentTicket = value;
                 NotifyOfPropertyChange(() => SelectedIncidentTicket);
-                NotifyOfPropertyChange(() => CanSaveIncidentTicket);
                 NotifyOfPropertyChange(() => CanDeleteIncidentTicket);
             }
         }
@@ -51,17 +50,6 @@ namespace NoDesk.ViewModels {
             shellViewModel.ActivateItem(new AddIncidentTicketViewModel(shellViewModel));
         }
 
-        public void SaveIncidentTicket() {
-            TicketDal ticketDal = new TicketDal();
-
-            foreach (IncidentTicket incidentTicket in IncidentTickets) {
-                ticketDal.UpdateTicket(incidentTicket);
-            }
-
-            IncidentTickets = new BindableCollection<IncidentTicket>(ticketDal.GetTickets());
-            SelectedIncidentTicket = null;
-        }
-
         public void DeleteIncidentTicket() {
             if (MessageBox.Show("Are you sure you want to delete a incident?",
                 "Confirmation", MessageBoxButton.YesNo) == MessageBoxResult.Yes) {
@@ -73,10 +61,6 @@ namespace NoDesk.ViewModels {
             }
 
             SelectedIncidentTicket = null;
-        }
-
-        public bool CanSaveIncidentTicket {
-            get { return !(SelectedIncidentTicket == null); }
         }
 
         public bool CanDeleteIncidentTicket {
@@ -101,7 +85,7 @@ namespace NoDesk.ViewModels {
 
             if (hidedIncidentTickets.Count > 0) {
                 foreach (IncidentTicket incidentTicket in hidedIncidentTickets) {
-                    if (incidentTicket.Subject.Contains(Filter)) {
+                    if (incidentTicket.Subject.ToUpper().Contains(Filter.ToUpper())) {
                         IncidentTickets.Add(incidentTicket);
                         removedIncidentTickets.Add(incidentTicket);
                     }
@@ -117,7 +101,7 @@ namespace NoDesk.ViewModels {
             }
 
             foreach (IncidentTicket incidentTicket in IncidentTickets) {
-                if (!incidentTicket.Subject.Contains(Filter)) {
+                if (!incidentTicket.Subject.ToUpper().Contains(Filter.ToUpper())) {
                     hidedIncidentTickets.Add(incidentTicket);
                     removedIncidentTickets.Add(incidentTicket);
                 }
@@ -128,6 +112,10 @@ namespace NoDesk.ViewModels {
                     IncidentTickets.Remove(incidentTicket);
                 }
             }
+        }
+
+        public void ShowIncidentTicket() {
+            shellViewModel.ActivateItem(new ShowIncidentTicketViewModel(shellViewModel, SelectedIncidentTicket, IncidentTickets));
         }
     }
 }
