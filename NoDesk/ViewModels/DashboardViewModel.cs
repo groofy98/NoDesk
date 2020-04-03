@@ -47,9 +47,23 @@ namespace NoDesk.ViewModels
             }
         }
 
+        private ObservableValue _ticketsPastDeadline;
+
+        public ObservableValue TicketsPastDeadline
+        {
+            get { return _ticketsPastDeadline; }
+            set { _ticketsPastDeadline = value; }
+        }
+
+
         public string UnresolvedLabel {
             get { return _ticketsOpen.Value + "/" + _ticketsTotal.Value; }
-            }        
+            }
+
+        public string DeadlineLabel 
+        {
+            get { return "" + _ticketsPastDeadline.Value; }
+        }
 
         public void ShowList()
         {
@@ -58,11 +72,15 @@ namespace NoDesk.ViewModels
 
         public SeriesCollection SeriesCollection { get; set; }
 
+        public SeriesCollection DeadlineData { get; set; }
+
         public DashboardViewModel(ShellViewModel shellViewModel) {
             this.shellViewModel = shellViewModel;
             TicketDal ticketDal = new TicketDal();
-            Console.WriteLine("Amount of tickets: " + ticketDal.GetTotalTicketAmount());
-            Console.WriteLine("Tickets past deadline: " + ticketDal.GetTicketPastDeadline());
+
+            TicketsPastDeadline = new ObservableValue(ticketDal.GetTicketPastDeadline());
+            TicketsPastDeadline.PropertyChanged += (obj, args) =>
+            { NotifyOfPropertyChange(() => DeadlineLabel); };
 
             TicketsOpen = new ObservableValue(ticketDal.GetOpenTicketAmount());
             TicketsOpen.PropertyChanged += (obj, args) =>
@@ -70,8 +88,27 @@ namespace NoDesk.ViewModels
 
             TicketsTotal = new ObservableValue(ticketDal.GetTotalTicketAmount());
             TicketsTotal.PropertyChanged += (obj, args) =>
-            { NotifyOfPropertyChange(() => UnresolvedLabel); };            
+            { NotifyOfPropertyChange(() => UnresolvedLabel); };
 
+            DeadlineData = new SeriesCollection
+            {
+                new PieSeries
+                {
+                    Title = "Past deadline",
+                    Values = new ChartValues<ObservableValue> {TicketsPastDeadline},
+                    DataLabels = false,
+                    Fill = System.Windows.Media.Brushes.Red
+                },
+                new PieSeries
+                {
+                    Title = "Not past deadline",
+                    Values = new ChartValues<ObservableValue> { new ObservableValue( TicketsOpen.Value - TicketsPastDeadline.Value )},
+                    DataLabels = false,
+                    Fill = System.Windows.Media.Brushes.Gray
+                }
+            };
+
+            
             SeriesCollection = new SeriesCollection
             {
                 new PieSeries
@@ -86,7 +123,7 @@ namespace NoDesk.ViewModels
                     Title = "solved",
                     Values = new ChartValues<ObservableValue> { TicketsSolved },
                     DataLabels = false,
-                    Fill = System.Windows.Media.Brushes.DarkSlateGray
+                    Fill = System.Windows.Media.Brushes.Gray
                 }
             };
         }

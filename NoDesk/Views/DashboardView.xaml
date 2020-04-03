@@ -35,20 +35,34 @@
         <StackPanel Orientation="Horizontal" Grid.Row="5" Grid.Column="1" Grid.ColumnSpan="5">
             <StackPanel Width="300" Height="300">
                 <TextBlock HorizontalAlignment="Center" FontWeight="Bold" FontSize="16"  Text="Unresolved incidents" ></TextBlock>
-                <TextBlock HorizontalAlignment="Center" FontSize="13"  Text="Unresolved incidents" ></TextBlock>
+                <TextBlock HorizontalAlignment="Center" FontSize="13"  Text="All tickets currently open" ></TextBlock>
                 <Canvas Width="170" Height="170" Margin="0 15">
-                    <TextBlock x:Name="UnresolvedLabel" HorizontalAlignment="Center" FontSize="45" VerticalAlignment="Center" RenderTransformOrigin="0.268,7.088" Canvas.Left="39" Canvas.Top="51" ><Run Text="9/10"/></TextBlock>
+                    <Viewbox Canvas.Left="38" Width="90" Height="50" Canvas.Top="58">
+                        <TextBlock x:Name="UnresolvedLabel" TextWrapping="Wrap" Text="9/10"/>
+                    </Viewbox>
                     <lvc:PieChart x:Name="Chart" Series="{Binding SeriesCollection}" 
                       InnerRadius="50" Width="170" Height="170" 
                       DisableAnimations="True" Background="Transparent" 
-                      HoverPushOut="0" StartingRotationAngle="0" SeriesColors="{Binding Colours}"
+                      HoverPushOut="0" StartingRotationAngle="0" 
                       />
                 </Canvas>
             </StackPanel>
             <StackPanel Orientation="Vertical" Width="300" Height="300">
-
+                <TextBlock HorizontalAlignment="Center" FontWeight="Bold" FontSize="16"  Text="Incidents past deadline" ></TextBlock>
+                <TextBlock HorizontalAlignment="Center" FontSize="13"  Text="These tickets need your immediate attention" ></TextBlock>
+                <Canvas Width="170" Height="170" Margin="0 15">
+                    <Viewbox Canvas.Left="38" Width="90" Height="50" Canvas.Top="58">
+                        <TextBlock x:Name="DeadlineLabel" TextWrapping="Wrap" Text="9/10"/>
+                    </Viewbox>
+                    <lvc:PieChart Series="{Binding DeadlineData}" 
+                      InnerRadius="50" Width="170" Height="170" 
+                      DisableAnimations="True" Background="Transparent" 
+                      HoverPushOut="0" StartingRotationAngle="0" BorderThickness="0"
+                      />
+                </Canvas>
             </StackPanel>
         </StackPanel>
         <!--Row 2-->
     </Grid>
 </UserControl>
+ 
