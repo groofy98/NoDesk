@@ -10,22 +10,22 @@
         <TextBox HorizontalAlignment="Left" Height="23" Margin="157,51,0,0" TextWrapping="Wrap" Text="{Binding FirstName, Mode=OneWayToSource}" VerticalAlignment="Top" Width="218" x:Name="firstNameUser" />
         <Label Content="First Name:" HorizontalAlignment="Left" Margin="47,48,0,0" VerticalAlignment="Top"/>
         <TextBox HorizontalAlignment="Left" Height="23" Margin="157,91,0,0" TextWrapping="Wrap" Text="{Binding LastName, Mode=OneWayToSource}" VerticalAlignment="Top" Width="218" x:Name="lastNameUser"/>
-        <TextBox HorizontalAlignment="Left" Height="23" Margin="160,130,0,0" TextWrapping="Wrap" Text="{Binding Username, Mode=OneWayToSource}" VerticalAlignment="Top" Width="218" x:Name="username"/>
-        <Label Content="Username:" HorizontalAlignment="Left" Margin="46,127,0,0" VerticalAlignment="Top"/>
-        <TextBox HorizontalAlignment="Left" Height="23" Margin="160,174,0,0" TextWrapping="Wrap" Text="{Binding Password, Mode=OneWayToSource}" VerticalAlignment="Top" Width="218" x:Name="password" />
+        <TextBox HorizontalAlignment="Left" Height="23" Margin="157,130,0,0" TextWrapping="Wrap" Text="{Binding Username, Mode=OneWayToSource}" VerticalAlignment="Top" Width="218" x:Name="username"/>
+        <Label Content="Username:" HorizontalAlignment="Left" Margin="47,127,0,0" VerticalAlignment="Top"/>
+        <TextBox HorizontalAlignment="Left" Height="23" Margin="157,174,0,0" TextWrapping="Wrap" Text="{Binding Password, Mode=OneWayToSource}" VerticalAlignment="Top" Width="218" x:Name="password" />
         <Label Content="Password:" HorizontalAlignment="Left" Margin="47,171,0,0" VerticalAlignment="Top"/>
 
-        <ComboBox HorizontalAlignment="Left" Margin="159,213,0,0" VerticalAlignment="Top" Width="218" x:Name="typeUser" SelectedValue="{Binding Type, Mode=OneWayToSource}" SelectedValuePath="Content">
+        <ComboBox HorizontalAlignment="Left" Margin="157,213,0,0" VerticalAlignment="Top" Width="218" x:Name="typeUser" SelectedValue="{Binding Type, Mode=OneWayToSource}" SelectedValuePath="Content">
             <ComboBoxItem Content="Employee"></ComboBoxItem>
             <ComboBoxItem Content="Admin"></ComboBoxItem>
         </ComboBox>
-        <TextBox HorizontalAlignment="Left" Height="23" Margin="159,255,0,0" TextWrapping="Wrap" Text="{Binding PhoneNumber, Mode=OneWayToSource}" VerticalAlignment="Top" Width="218" x:Name="phoneNumberUser"/>
-        <TextBox HorizontalAlignment="Left" Height="23" Margin="160,299,0,0" TextWrapping="Wrap" Text="{Binding Mail, Mode=OneWayToSource}" VerticalAlignment="Top" Width="218" x:Name="emailUser" />
-        <Label Content="Last Name:" HorizontalAlignment="Left" Margin="48,91,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.979,-0.141"/>
-        <Label Content="Type of user:" HorizontalAlignment="Left" Margin="50,213,0,0" VerticalAlignment="Top"/>
-        <Label Content="Phone number:" HorizontalAlignment="Left" Margin="49,252,0,0" VerticalAlignment="Top"/>
-        <Label Content="Location/Branch:" HorizontalAlignment="Left" Margin="50,336,0,0" VerticalAlignment="Top"/>
-        <ComboBox HorizontalAlignment="Left" Margin="160,340,0,0" VerticalAlignment="Top" Width="218" x:Name="locationUser" SelectedValue="{Binding Location, Mode=OneWayToSource}" SelectedValuePath="Content">
+        <TextBox HorizontalAlignment="Left" Height="23" Margin="157,255,0,0" TextWrapping="Wrap" Text="{Binding PhoneNumber, Mode=OneWayToSource}" VerticalAlignment="Top" Width="218" x:Name="phoneNumberUser"/>
+        <TextBox HorizontalAlignment="Left" Height="23" Margin="157,299,0,0" TextWrapping="Wrap" Text="{Binding Mail, Mode=OneWayToSource}" VerticalAlignment="Top" Width="218" x:Name="emailUser" />
+        <Label Content="Last Name:" HorizontalAlignment="Left" Margin="47,91,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.979,-0.141"/>
+        <Label Content="Type of user:" HorizontalAlignment="Left" Margin="47,213,0,0" VerticalAlignment="Top"/>
+        <Label Content="Phone number:" HorizontalAlignment="Left" Margin="47,252,0,0" VerticalAlignment="Top"/>
+        <Label Content="Location/Branch:" HorizontalAlignment="Left" Margin="47,336,0,0" VerticalAlignment="Top"/>
+        <ComboBox HorizontalAlignment="Left" Margin="157,340,0,0" VerticalAlignment="Top" Width="218" x:Name="locationUser" SelectedValue="{Binding Location, Mode=OneWayToSource}" SelectedValuePath="Content">
             <ComboBoxItem Content="Amsterdam"></ComboBoxItem>
             <ComboBoxItem Content="Haarlem"></ComboBoxItem>
             <ComboBoxItem Content="Rotterdam"></ComboBoxItem>
@@ -51,7 +51,7 @@
             </Button.RenderTransform>
         </Button>
 
-        <Label Content="Email Address:" HorizontalAlignment="Left" Margin="50,296,0,0" VerticalAlignment="Top"/>
+        <Label Content="Email Address:" HorizontalAlignment="Left" Margin="47,296,0,0" VerticalAlignment="Top"/>
         <Label HorizontalAlignment="Left" Margin="50,-1,0,0" VerticalAlignment="Top" Height="53" Width="532" FontSize="24">
             <Label x:Name="Title" Content="Create new user
                    " FontSize="24" FontWeight="Bold" Height="46" Width="800"/>
