@@ -6,12 +6,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using NoDesk.Dal;
 
 namespace NoDesk
-{    
+{
     public class User
     {
-        public ObjectId id { get; set; }
+        public ObjectId id;
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string Username { get; set; }
@@ -31,5 +32,28 @@ namespace NoDesk
                 );
         }
 
+
+        public void AddUser(User user)
+        {
+            UserDal userDal = new UserDal();
+            userDal.InsertUser(user);
+        }
+
+        public BsonDocument CreateBson()
+        {
+            var document = new BsonDocument {
+                {"user_id", this.id },
+                {"First name", this.FirstName },
+                {"Last name", this.LastName },
+                {"Username", this.Username },
+                {"Password", this.Password },
+                {"Type", this.Type },
+                {"Mail", this.MailAddress },
+                {"Phone number", this.PhoneNumber },
+                {"Location", this.Location }
+            };
+
+            return document;
+        }
     }
 }
