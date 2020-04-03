@@ -50,6 +50,7 @@ namespace NoDesk.ViewModels
         }
 
         public void AddNewUser() {
+            shellViewModel.ActivateItem(new AddUserViewModel(shellViewModel));
         }
 
         public void SaveUser() {

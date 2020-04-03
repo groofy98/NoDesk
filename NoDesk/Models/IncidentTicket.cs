@@ -13,7 +13,7 @@ namespace NoDesk
     
     public class IncidentTicket
     {
-        public ObjectId Id { get; set; }
+        public ObjectId Id;
         public DateTime Date { get; set; }
         public IncidentType Type { get; set; }
         public string By { get; set; }
