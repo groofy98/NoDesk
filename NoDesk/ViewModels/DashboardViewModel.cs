@@ -70,6 +70,14 @@ namespace NoDesk.ViewModels
             this.shellViewModel.ShowTickets();            
         }
 
+        public void ShowTicketsPastDeadline()
+        {
+            TicketDal ticketDal = new TicketDal();
+            var incidents = new IncidentTicketViewModel(this.shellViewModel);
+            incidents.IncidentTickets = new BindableCollection<IncidentTicket>(new TicketDal().GetTicketsPastDeadline());
+            this.shellViewModel.ActivateItem(incidents);
+        }
+
         public SeriesCollection SeriesCollection { get; set; }
 
         public SeriesCollection DeadlineData { get; set; }
@@ -78,7 +86,7 @@ namespace NoDesk.ViewModels
             this.shellViewModel = shellViewModel;
             TicketDal ticketDal = new TicketDal();
 
-            TicketsPastDeadline = new ObservableValue(ticketDal.GetTicketPastDeadline());
+            TicketsPastDeadline = new ObservableValue(ticketDal.GetTicketPastDeadlineAmount());
             TicketsPastDeadline.PropertyChanged += (obj, args) =>
             { NotifyOfPropertyChange(() => DeadlineLabel); };
 

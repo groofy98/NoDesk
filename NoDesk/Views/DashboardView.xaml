@@ -4,7 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:NoDesk.Views"
-             xmlns:lvc="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
+             xmlns:lvc="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf" xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity" xmlns:cal="http://www.caliburnproject.org"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid Background="White">
@@ -47,14 +47,14 @@
                       />
                 </Canvas>
             </StackPanel>
-            <StackPanel Orientation="Vertical" Width="300" Height="300">
+            <StackPanel Orientation="Vertical" Width="300" Height="300" cal:Message.Attach="[Event MouseLeftButtonUp] = [Action  ShowTicketsPastDeadline()]">
                 <TextBlock HorizontalAlignment="Center" FontWeight="Bold" FontSize="16"  Text="Incidents past deadline" ></TextBlock>
                 <TextBlock HorizontalAlignment="Center" FontSize="13"  Text="These tickets need your immediate attention" ></TextBlock>
                 <Canvas Width="170" Height="170" Margin="0 15">
                     <Viewbox Canvas.Left="38" Width="90" Height="50" Canvas.Top="58">
                         <TextBlock x:Name="DeadlineLabel" TextWrapping="Wrap" Text="9/10"/>
                     </Viewbox>
-                    <lvc:PieChart Series="{Binding DeadlineData}" 
+                    <lvc:PieChart Series="{Binding DeadlineData}"                        
                       InnerRadius="50" Width="170" Height="170" 
                       DisableAnimations="True" Background="Transparent" 
                       HoverPushOut="0" StartingRotationAngle="0" BorderThickness="0"
