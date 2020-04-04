@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using NoDesk.Dal;
 
 namespace NoDesk.ViewModels
 {
@@ -11,11 +12,24 @@ namespace NoDesk.ViewModels
     {
         ShellViewModel shellViewModel;
         IncidentTicket _incidentTicket;
+        BindableCollection<User> _users;
+        
 
         public AddIncidentTicketViewModel(ShellViewModel shellViewModel)
         {
             this.shellViewModel = shellViewModel;
             _incidentTicket = new IncidentTicket();
+
+            _users = new BindableCollection<User>(new UserDal().GetUsers());
+        }
+
+        public BindableCollection<User> Users
+        {
+            get { return _users; }
+            set
+            {
+                _users = value;
+            }
         }
 
         public DateTime IncidentDate

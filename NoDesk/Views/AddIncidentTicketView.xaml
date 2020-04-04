@@ -16,8 +16,19 @@
             <ComboBoxItem Content="Hardware"></ComboBoxItem>
             <ComboBoxItem Content="Service"></ComboBoxItem>
         </ComboBox>
-        
-        <TextBox HorizontalAlignment="Left" Margin="189,88,0,0" VerticalAlignment="Top" Width="218" x:Name="TicketReportedBy" Text="{Binding Path=IncidentReportedBy, Mode=OneWayToSource}"/>
+
+        <ComboBox x:Name="Users" 
+                    HorizontalAlignment="Left" 
+                    Margin="189,88,0,0" 
+                    VerticalAlignment="Top" 
+                    Width="218" 
+                    IsEditable="True"
+                    IsTextSearchEnabled="True"
+                    IsSynchronizedWithCurrentItem="True"
+                    
+                    DisplayMemberPath="Username"
+                    Text="{Binding Path=IncidentReportedBy, Mode=OneWayToSource}" Height="21"/>
+
         <ComboBox HorizontalAlignment="Left" Margin="189,122,0,0" VerticalAlignment="Top" Width="218" x:Name="TicketPriority" SelectedValue="{Binding Path=IncidentPriority, Mode=OneWayToSource}" SelectedValuePath="Content">>
             <ComboBoxItem Content="Low"></ComboBoxItem>
             <ComboBoxItem Content="Normal"></ComboBoxItem>
