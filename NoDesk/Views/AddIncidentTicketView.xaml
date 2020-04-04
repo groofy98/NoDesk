@@ -7,11 +7,28 @@
              xmlns:local="clr-namespace:NoDesk.Views"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
+    
+    
     <Grid RenderTransformOrigin="0.179,1.884">
-        <DatePicker HorizontalAlignment="Left" Margin="189,10,0,0" VerticalAlignment="Top" Width="218" x:Name="TicketDate" 
-                  SelectedDate="{Binding Path=IncidentDate, Mode=OneWayToSource}" DisplayDateEnd="{x:Static sys:DateTime.Today}"/>
-        
-        <ComboBox HorizontalAlignment="Left" Margin="189,191,0,0" VerticalAlignment="Top" Width="218" x:Name="Type" BorderThickness="1" SelectedValue="{Binding Path=IncidentType, Mode=OneWayToSource}" SelectedValuePath="Content">>
+        <DatePicker x:Name="TicketDate"
+                      HorizontalAlignment="Left" 
+                      Margin="189,10,0,0" 
+                      VerticalAlignment="Top" 
+                      Width="218"  
+                      SelectedDate="{Binding Path=IncidentDate, Mode=OneWayToSource}" 
+                      DisplayDateEnd="{x:Static sys:DateTime.Today}"/>
+
+        <ComboBox x:Name="Type" 
+                    HorizontalAlignment="Left" 
+                    Margin="189,191,0,0" 
+                    VerticalAlignment="Top" 
+                    Width="218" 
+                    BorderThickness="1" 
+                    SelectedValue="{Binding Path=IncidentType, Mode=OneWayToSource}" 
+                    SelectedValuePath="Content"
+                    IsEditable="True"
+                    IsTextSearchEnabled="True">
+                    
             <ComboBoxItem Content="Software"></ComboBoxItem>
             <ComboBoxItem Content="Hardware"></ComboBoxItem>
             <ComboBoxItem Content="Service"></ComboBoxItem>
@@ -24,39 +41,88 @@
                     Width="218" 
                     IsEditable="True"
                     IsTextSearchEnabled="True"
-                    IsSynchronizedWithCurrentItem="True"
-                    
                     DisplayMemberPath="Username"
                     Text="{Binding Path=IncidentReportedBy, Mode=OneWayToSource}" Height="21"/>
 
-        <ComboBox HorizontalAlignment="Left" Margin="189,122,0,0" VerticalAlignment="Top" Width="218" x:Name="TicketPriority" SelectedValue="{Binding Path=IncidentPriority, Mode=OneWayToSource}" SelectedValuePath="Content">>
+        <ComboBox x:Name="TicketPriority" 
+                    HorizontalAlignment="Left" 
+                    Margin="189,122,0,0" 
+                    VerticalAlignment="Top" 
+                    Width="218"  
+                    SelectedValue="{Binding Path=IncidentPriority, Mode=OneWayToSource}" 
+                    SelectedValuePath="Content"
+                    IsEditable="True"
+                    IsTextSearchEnabled="True">
+            
             <ComboBoxItem Content="Low"></ComboBoxItem>
             <ComboBoxItem Content="Normal"></ComboBoxItem>
             <ComboBoxItem Content="High"></ComboBoxItem>
         </ComboBox>
 
-        <DatePicker HorizontalAlignment="Left" Margin="189,155,0,0" VerticalAlignment="Top" Width="218" x:Name="TicketDeadline" 
-                  SelectedDate="{Binding Path=IncidentDeadline, Mode=OneWayToSource}" DisplayDateStart="{x:Static sys:DateTime.Today}"/>
+        <DatePicker x:Name="TicketDeadline" 
+                      HorizontalAlignment="Left" 
+                      Margin="189,155,0,0" 
+                      VerticalAlignment="Top" 
+                      Width="218" 
+                      SelectedDate="{Binding Path=IncidentDeadline, Mode=OneWayToSource}" 
+                      DisplayDateStart="{x:Static sys:DateTime.Today}"/>
 
-        <TextBox HorizontalAlignment="Left" Height="23" Margin="189,52,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="218" x:Name="TicketSubject" Text="{Binding Path=IncidentSubject, Mode=OneWayToSource}"/>
-        <TextBox HorizontalAlignment="Left" Height="137" Margin="189,227,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="218" x:Name="TicketDescription" Text="{Binding Path=IncidentDescription, Mode=OneWayToSource}"/>
-        <Button x:Name="CancelTicket" Content="CANCEL" HorizontalAlignment="Left" Margin="189,372,0,0" VerticalAlignment="Top" Width="99" RenderTransformOrigin="0.142,0.82">
-            <Button.RenderTransform>
-                <TransformGroup>
-                    <ScaleTransform/>
-                    <SkewTransform/>
-                    <RotateTransform Angle="0.038"/>
-                    <TranslateTransform/>
-                </TransformGroup>
-            </Button.RenderTransform>
-        </Button>
-        <Button x:Name="SubmitTicket" Content="SUBMIT TICKET" HorizontalAlignment="Left" Margin="311,372,0,0" VerticalAlignment="Top" Width="96" RenderTransformOrigin="0.142,0.82"/>
+        <TextBox x:Name="TicketSubject"
+                   HorizontalAlignment="Left" 
+                   Height="23" 
+                   Margin="189,52,0,0" 
+                   TextWrapping="Wrap" 
+                   VerticalAlignment="Top" 
+                   Width="218" 
+                   Text="{Binding Path=IncidentSubject, Mode=OneWayToSource}"/>
+
+        <TextBox x:Name="TicketDescription"
+                   HorizontalAlignment="Left" 
+                   Height="137" Margin="189,227,0,0" 
+                   TextWrapping="Wrap" 
+                   VerticalAlignment="Top" 
+                   Width="218"  
+                   Text="{Binding Path=IncidentDescription, Mode=OneWayToSource}"/>
         
-        <Label Content="Subject" HorizontalAlignment="Left" Margin="112,52,0,0" VerticalAlignment="Top"/>
-        <Label Content="Reported by
-               " HorizontalAlignment="Left" Margin="112,83,0,0" VerticalAlignment="Top"/>
-        <Label Content="Description
-" HorizontalAlignment="Left" Margin="112,227,0,0" VerticalAlignment="Top"/>
+        <Button x:Name="CancelTicket" 
+                  Content="CANCEL" 
+                  HorizontalAlignment="Left" 
+                  Margin="189,372,0,0" 
+                  VerticalAlignment="Top" 
+                  Width="99" 
+                  RenderTransformOrigin="0.142,0.82"
+                  Background="#FFFFFF" 
+                  Foreground="#000000" 
+                  FontWeight="Bold"
+                  BorderThickness="0">
+            
+        </Button>
+        <Button x:Name="SubmitTicket" 
+                  Content="SUBMIT TICKET" 
+                  HorizontalAlignment="Left" 
+                  Margin="311,372,0,0" 
+                  VerticalAlignment="Top" 
+                  Width="96" 
+                  RenderTransformOrigin="0.142,0.82"
+                  Background="#FF34A3FF" 
+                  Foreground="White" 
+                  FontWeight="Bold"
+                  BorderThickness="0"/>
+        
+        <Label Content="Subject" 
+               HorizontalAlignment="Left" 
+               Margin="112,52,0,0" 
+               VerticalAlignment="Top"/>
+        
+        <Label Content="Reported by" 
+               HorizontalAlignment="Left" 
+               Margin="112,83,0,0" 
+               VerticalAlignment="Top"/>
+        
+        <Label Content="Description" 
+               HorizontalAlignment="Left" 
+               Margin="112,227,0,0" 
+               VerticalAlignment="Top"/>
 
     </Grid>
 </UserControl>
