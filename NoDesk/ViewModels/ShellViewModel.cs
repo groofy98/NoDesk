@@ -58,7 +58,7 @@ namespace NoDesk.ViewModels
 
         public bool CanShowDashboard {
             get {
-                if (LoggedUser != null && LoggedUser.Type == UserType.Admin) {
+                if (LoggedUser != null && LoggedUser.Type == UserType.Employee) {
                         return true;
                 }
                 return false;
@@ -67,7 +67,7 @@ namespace NoDesk.ViewModels
 
         public bool CanShowUsers {
             get {
-                if (LoggedUser != null &&LoggedUser.Type == UserType.Admin) {
+                if (LoggedUser != null &&LoggedUser.Type == UserType.Employee) {
                         return true;
                 }
                 return false;

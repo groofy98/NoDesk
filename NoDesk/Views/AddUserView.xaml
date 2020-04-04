@@ -16,8 +16,8 @@
         <Label Content="Password:" HorizontalAlignment="Left" Margin="47,171,0,0" VerticalAlignment="Top"/>
 
         <ComboBox HorizontalAlignment="Left" Margin="157,213,0,0" VerticalAlignment="Top" Width="218" x:Name="typeUser" SelectedValue="{Binding Type, Mode=OneWayToSource}" SelectedValuePath="Content">
+            <ComboBoxItem Content="User"></ComboBoxItem>
             <ComboBoxItem Content="Employee"></ComboBoxItem>
-            <ComboBoxItem Content="Admin"></ComboBoxItem>
         </ComboBox>
         <TextBox HorizontalAlignment="Left" Height="23" Margin="157,255,0,0" TextWrapping="Wrap" Text="{Binding PhoneNumber, Mode=OneWayToSource}" VerticalAlignment="Top" Width="218" x:Name="phoneNumberUser"/>
         <TextBox HorizontalAlignment="Left" Height="23" Margin="157,299,0,0" TextWrapping="Wrap" Text="{Binding Mail, Mode=OneWayToSource}" VerticalAlignment="Top" Width="218" x:Name="emailUser" />

@@ -6,6 +6,6 @@ using System.Threading.Tasks;
 
 namespace NoDesk {
     public enum UserType {
-        Employee, Admin
+        User, Employee
     }
 }
