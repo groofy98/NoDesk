@@ -13,10 +13,8 @@ namespace NoDesk.ViewModels
 {
     public class DashboardViewModel : Screen
     {
-        ShellViewModel shellViewModel;
-
-        private ObservableValue _ticketsSolved;
-
+        private readonly ShellViewModel shellViewModel;
+        
         public ObservableValue TicketsSolved
         {
             get { return new ObservableValue(_ticketsTotal.Value - _ticketsOpen.Value); }
@@ -71,10 +69,11 @@ namespace NoDesk.ViewModels
         }
 
         public void ShowTicketsPastDeadline()
-        {
-            TicketDal ticketDal = new TicketDal();
-            var incidents = new IncidentTicketViewModel(this.shellViewModel);
-            incidents.IncidentTickets = new BindableCollection<IncidentTicket>(new TicketDal().GetTicketsPastDeadline());
+        {            
+            var incidents = new IncidentTicketViewModel(this.shellViewModel)
+            {
+                IncidentTickets = new BindableCollection<IncidentTicket>(new TicketDal().GetTicketsPastDeadline())
+            };
             this.shellViewModel.ActivateItem(incidents);
         }
 

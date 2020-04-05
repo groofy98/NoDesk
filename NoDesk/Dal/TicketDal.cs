@@ -17,7 +17,7 @@ namespace NoDesk.Dal {
         {
             var collection = database.GetCollection<IncidentTicket>("tickets");
             var filter = Builders<IncidentTicket>.Filter.Lte("Deadline", DateTime.Now);
-            filter = filter & Builders<IncidentTicket>.Filter.Eq("Status", false);
+            filter &= Builders<IncidentTicket>.Filter.Eq("Status", false);
             return collection.Find(filter).ToList();
         }
 
@@ -60,7 +60,7 @@ namespace NoDesk.Dal {
         {
             var collection = database.GetCollection<IncidentTicket>("tickets");
             var filter = Builders<IncidentTicket>.Filter.Lte("Deadline", DateTime.Now);
-            filter = filter & Builders<IncidentTicket>.Filter.Eq("Status", false);
+            filter &= Builders<IncidentTicket>.Filter.Eq("Status", false);
             return (int)collection.Find(filter).CountDocuments();
         }
 

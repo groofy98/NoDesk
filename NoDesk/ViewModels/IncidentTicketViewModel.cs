@@ -11,7 +11,7 @@ namespace NoDesk.ViewModels {
     class IncidentTicketViewModel : Screen {
         private BindableCollection<IncidentTicket> _incidentTickets;
         private IncidentTicket _selectedIncidentTicket;
-        private ShellViewModel shellViewModel;
+        private readonly ShellViewModel shellViewModel;
         private string _filter = "Filter by subject";
         private List<IncidentTicket> hidedIncidentTickets;
 
