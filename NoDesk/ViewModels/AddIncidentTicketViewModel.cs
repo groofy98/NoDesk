@@ -10,14 +10,59 @@ using System.Windows.Controls;
 
 namespace NoDesk.ViewModels
 {
-    class AddIncidentTicketViewModel : UserControl
+    class AddIncidentTicketViewModel : Screen
     {
         ShellViewModel shellViewModel;
-        IncidentTicket _incidentTicket;
-        BindableCollection<User> _users;
-        BindableCollection<string> _types;
-        BindableCollection<string> _deadlines;
+        private IncidentTicket _incidentTicket;
+        public IncidentTicket IncidentTicket
+        {
+            get { return _incidentTicket; }
+            set
+            {
+                _incidentTicket = value;
+                NotifyOfPropertyChange(() => IncidentTicket);
+            }
+        }
+
+        private BindableCollection<User> _users;
+        public BindableCollection<User> Users
+        {
+            get { return _users; }
+            set
+            {
+                _users = value;
+            }
+        }
+
+        private BindableCollection<string> _types;
+        public BindableCollection<string> TicketType
+        {
+            get { return _types; }
+            set
+            {
+                _types = value;
+            }
+        }
+
+        private BindableCollection<string> _deadlines;
+        public BindableCollection<string> TicketDeadline
+        {
+            get { return _deadlines; }
+            set
+            {
+                _deadlines = value;
+            }
+        }
+
         BindableCollection<string> _priority;
+        public BindableCollection<string> TicketPriority
+        {
+            get { return _priority; }
+            set
+            {
+                _priority = value;
+            }
+        }
 
 
         string _deadline;
@@ -27,6 +72,7 @@ namespace NoDesk.ViewModels
         {
             this.shellViewModel = shellViewModel;
             _incidentTicket = new IncidentTicket();
+            _incidentTicket.Date = DateTime.Now;
 
             _users = new BindableCollection<User>(new UserDal().GetUsers());
 
@@ -47,64 +93,36 @@ namespace NoDesk.ViewModels
             _priority.Add("High");
         }
 
-        public BindableCollection<User> Users
-        {
-            get { return _users; }
-            set
-            {
-                _users = value;
-            }
-        }
-
-        public BindableCollection<string> TicketType
-        {
-            get { return _types; }
-            set
-            {
-                _types = value;
-            }
-        }
-
-        public BindableCollection<string> TicketDeadline
-        {
-            get { return _deadlines; }
-            set
-            {
-                _deadlines = value;
-            }
-        }
-
-        public BindableCollection<string> TicketPriority
-        {
-            get { return _priority; }
-            set
-            {   
-                _priority = value;
-            }
-        }
-
         public DateTime IncidentDate
         {
             get { return _incidentTicket.Date; }
-            set { _incidentTicket.Date = value; }
+            set { _incidentTicket.Date = value;
+                NotifyOfPropertyChange(() => CanSubmitTicket);
+            }
         }
 
         public string IncidentSubject
         {
             get { return _incidentTicket.Subject; }
-            set { _incidentTicket.Subject = value; }
+            set { _incidentTicket.Subject = value;
+                NotifyOfPropertyChange(() => CanSubmitTicket);
+            }
         }
 
         public string IncidentReportedBy
         {
             get { return _incidentTicket.By; }
-            set { _incidentTicket.By = value; }
+            set { _incidentTicket.By = value;
+                NotifyOfPropertyChange(() => CanSubmitTicket);
+            }
         }
 
         public string IncidentPriority
         {
             get { return _incidentTicket.Priority; }
-            set { _incidentTicket.Priority = value; }
+            set { _incidentTicket.Priority = value;
+                NotifyOfPropertyChange(() => CanSubmitTicket);
+            }
         }
 
         public string IncidentDeadline
@@ -127,6 +145,7 @@ namespace NoDesk.ViewModels
                         _incidentTicket.Deadline = _incidentTicket.Date.AddDays(182.6);
                         break;
                 }
+                NotifyOfPropertyChange(() => CanSubmitTicket);
             }
         }
 
@@ -135,7 +154,6 @@ namespace NoDesk.ViewModels
             get { return _type; }
             set
             {
-                _type = value;
                 switch (value)
                 {
                     case "Software":
@@ -148,27 +166,33 @@ namespace NoDesk.ViewModels
                         _incidentTicket.Type = IncidentType.Service;
                         break;
                 }
+                NotifyOfPropertyChange(() => CanSubmitTicket);
             }
         }
 
         public string IncidentDescription
         {
             get { return _incidentTicket.Description; }
-            set { _incidentTicket.Description = value; }
+            set { _incidentTicket.Description = value;
+                NotifyOfPropertyChange(() => CanSubmitTicket);
+            }
         }
 
-        public void SubmitTicket()
+        public bool CanSubmitTicket
         {
-            if (_incidentTicket.Date != null && _incidentTicket.Type != 0 && !string.IsNullOrWhiteSpace(_incidentTicket.By) && !string.IsNullOrWhiteSpace(_incidentTicket.Priority) && _incidentTicket.Deadline != null && !string.IsNullOrWhiteSpace(_incidentTicket.Subject) && !string.IsNullOrWhiteSpace(_incidentTicket.Description))
-                {
-                _incidentTicket.SubmitTicket(_incidentTicket);
-                shellViewModel.ActivateItem(new IncidentTicketViewModel(shellViewModel));
+            get {
+                return (_incidentTicket.Date != null && _incidentTicket.Type != 0 && !string.IsNullOrWhiteSpace(_incidentTicket.By) && !string.IsNullOrWhiteSpace(_incidentTicket.Priority)
+                  && _incidentTicket.Deadline != null && !string.IsNullOrWhiteSpace(_incidentTicket.Subject) && !string.IsNullOrWhiteSpace(_incidentTicket.Description)); 
             }
-            else
-            {
-                MessageBox.Show("Please complete the entire form");
-            }
-            
+        }
+
+        public void SubmitTicket(IncidentTicket incidentTicket)
+        {
+            _incidentTicket.SubmitTicket(_incidentTicket);
+
+            MessageBox.Show("Ticket added.");
+
+            shellViewModel.ActivateItem(new IncidentTicketViewModel(shellViewModel));
         }
 
         public void CancelTicket()
