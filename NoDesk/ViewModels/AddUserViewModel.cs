@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using NoDesk.Dal;
+using System.Net.Mail;
 
 namespace NoDesk.ViewModels
 {
@@ -90,14 +91,61 @@ namespace NoDesk.ViewModels
 
             //Adds user to database
             else
-            { 
+            {
+                //Generates password and changes user's password
+                string password = GeneratePassword(10);
+                user.Password = password;
+                userDal.UpdateUser(user);
+
+                //Sends email to user with new generated password
+                string message = "Dear " + user.FirstName + ", Your new password is " + password;
+                SendEmail(user, message);
+
+                //Adds user and gives confirmation message
                 user.AddUser(user);
-                MessageBox.Show("User added!");
+                MessageBox.Show("User added!, Check your email for the password");
                 shellViewModel.ActivateItem(new UserViewModel(shellViewModel));
             }
 
 
+        }
 
+        private string GeneratePassword(int length)
+        {
+            //Generates password
+            const string allowedChars = "abcdefghijkmnopqrstuvwxyzABCDEFGHJKLMNOPQRSTUVWXYZ0123456789!@$?_-";
+            StringBuilder res = new StringBuilder();
+            Random rnd = new Random();
+            while (0 < length--)
+            {
+                res.Append(allowedChars[rnd.Next(allowedChars.Length)]);
+            }
+            return res.ToString();
+        }
+
+
+        private void SendEmail(User user, string message)
+        {
+            MailMessage mail = new MailMessage();
+            mail.Body = message;
+            mail.To.Add(new MailAddress(user.MailAddress));
+            mail.From = new MailAddress("NoDesk2020@gmail.com");
+            System.Net.NetworkCredential auth = new System.Net.NetworkCredential("NoDesk2020@gmail.com", "_PyoN@57rQ");
+            SmtpClient client = new SmtpClient("smtp.gmail.com", 587);
+            client.EnableSsl = true;
+            client.UseDefaultCredentials = false;
+            client.DeliveryMethod = SmtpDeliveryMethod.Network;
+            mail.IsBodyHtml = true;
+            client.Credentials = auth;
+
+            try
+            {
+                client.Send(mail);
+            }
+            catch
+            {
+                MessageBox.Show("Problem with mailing server. Please contact our servicedesk.");
+            }
         }
     }
 }
