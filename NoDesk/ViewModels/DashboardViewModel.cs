@@ -14,7 +14,16 @@ namespace NoDesk.ViewModels
     public class DashboardViewModel : Screen
     {
         private readonly ShellViewModel shellViewModel;
-        
+
+        public string NewTickets 
+        { 
+            get 
+            {
+                TicketDal ticketDal = new TicketDal();
+                return ticketDal.GetNewTicketAmount(shellViewModel.LoggedUser).ToString();               
+            }                        
+        }
+
         public ObservableValue TicketsSolved
         {
             get { return new ObservableValue(_ticketsTotal.Value - _ticketsOpen.Value); }
