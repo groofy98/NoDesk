@@ -42,7 +42,12 @@ namespace NoDesk.ViewModels {
         public IncidentTicketViewModel(ShellViewModel shellViewModel) {
             this.shellViewModel = shellViewModel;
 
-            IncidentTickets = new BindableCollection<IncidentTicket>(new TicketDal().GetTickets());
+            if (shellViewModel.LoggedUser.Type == UserType.User) {
+                IncidentTickets = new BindableCollection<IncidentTicket>(new TicketDal().GetTicketsByUsername(shellViewModel.LoggedUser.Username));
+            } else {
+                IncidentTickets = new BindableCollection<IncidentTicket>(new TicketDal().GetTickets());
+            }
+            
             hidedIncidentTickets = new List<IncidentTicket>();
         }
 
@@ -61,10 +66,6 @@ namespace NoDesk.ViewModels {
             }
 
             SelectedIncidentTicket = null;
-        }
-
-        public bool CanDeleteIncidentTicket {
-            get { return !(SelectedIncidentTicket == null); }
         }
 
         public void FilterIncidentTickets() {
@@ -115,12 +116,32 @@ namespace NoDesk.ViewModels {
         }
 
         public void ShowIncidentTicket() {
-            shellViewModel.ActivateItem(new ShowIncidentTicketViewModel(shellViewModel, SelectedIncidentTicket, IncidentTickets));
+            if (shellViewModel.LoggedUser.Type == UserType.Employee) {
+                shellViewModel.ActivateItem(new ShowIncidentTicketViewModel(shellViewModel, SelectedIncidentTicket, IncidentTickets));
+            }
         }
 
         public void FindByUser()
         {
             shellViewModel.ActivateItem(new UserTicketsViewModel(shellViewModel));
+        }
+
+        public bool CanCreateIncident {
+            get { return shellViewModel.LoggedUser.Type == UserType.Employee; }
+        }
+
+        public bool CanDeleteIncidentTicket {
+            get {
+                if (shellViewModel.LoggedUser.Type == UserType.User) {
+                    return false;
+                }
+
+                return !(SelectedIncidentTicket == null);
+            }
+        }
+
+        public bool CanFindByUser {
+            get { return shellViewModel.LoggedUser.Type == UserType.Employee; }
         }
     }
 }
