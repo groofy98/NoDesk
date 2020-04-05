@@ -71,5 +71,12 @@ namespace NoDesk.Dal {
             var filter = Builders<IncidentTicket>.Filter.Eq("_id", ticket.Id);
             collection.DeleteOne(filter);
         }
+
+        public List<IncidentTicket> GetTicketsByUsername(string username)
+        {
+            var collection = database.GetCollection<IncidentTicket>("tickets");
+            var filter = Builders<IncidentTicket>.Filter.Eq("By", username);
+            return collection.Find(filter).ToList();
+        }
     }
 }

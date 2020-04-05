@@ -117,5 +117,10 @@ namespace NoDesk.ViewModels {
         public void ShowIncidentTicket() {
             shellViewModel.ActivateItem(new ShowIncidentTicketViewModel(shellViewModel, SelectedIncidentTicket, IncidentTickets));
         }
+
+        public void FindByUser()
+        {
+            shellViewModel.ActivateItem(new UserTicketsViewModel(shellViewModel));
+        }
     }
 }

@@ -14,88 +14,39 @@ namespace NoDesk.ViewModels
     {
         ShellViewModel shellViewModel;
         private IncidentTicket _incidentTicket;
-        public IncidentTicket IncidentTicket
-        {
-            get { return _incidentTicket; }
-            set
-            {
-                _incidentTicket = value;
-                NotifyOfPropertyChange(() => IncidentTicket);
-            }
-        }
-
         private BindableCollection<User> _users;
-        public BindableCollection<User> Users
-        {
-            get { return _users; }
-            set
-            {
-                _users = value;
-            }
-        }
-
-        private BindableCollection<string> _types;
-        public BindableCollection<string> TicketType
-        {
-            get { return _types; }
-            set
-            {
-                _types = value;
-            }
-        }
-
-        private BindableCollection<string> _deadlines;
-        public BindableCollection<string> TicketDeadline
-        {
-            get { return _deadlines; }
-            set
-            {
-                _deadlines = value;
-            }
-        }
-
-        BindableCollection<string> _priority;
-        public BindableCollection<string> TicketPriority
-        {
-            get { return _priority; }
-            set
-            {
-                _priority = value;
-            }
-        }
-
-
-        string _deadline;
-        string _type;
+        private BindableCollection<string> _ticketType;
+        private BindableCollection<string> _ticketDeadlines;
+        BindableCollection<string> _ticketPriority;
 
         public AddIncidentTicketViewModel(ShellViewModel shellViewModel)
         {
             this.shellViewModel = shellViewModel;
             _incidentTicket = new IncidentTicket();
-            _incidentTicket.Date = DateTime.Now;
 
-            _users = new BindableCollection<User>(new UserDal().GetUsers());
+            Users = new BindableCollection<User>(new UserDal().GetUsers());
 
-            _types = new BindableCollection<string>();
-            _types.Add("Software");
-            _types.Add("Hardware");
-            _types.Add("Service");
+            _ticketType = new BindableCollection<string>();
+            _ticketType.Add("Software");
+            _ticketType.Add("Hardware");
+            _ticketType.Add("Service");
 
-            _deadlines = new BindableCollection<string>();
-            _deadlines.Add("7 days");
-            _deadlines.Add("14 days");
-            _deadlines.Add("28 days");
-            _deadlines.Add("6 months");
+            _ticketDeadlines = new BindableCollection<string>();
+            _ticketDeadlines.Add("7 days");
+            _ticketDeadlines.Add("14 days");
+            _ticketDeadlines.Add("28 days");
+            _ticketDeadlines.Add("6 months");
 
-            _priority = new BindableCollection<string>();
-            _priority.Add("Low");
-            _priority.Add("Medium");
-            _priority.Add("High");
+            _ticketPriority = new BindableCollection<string>();
+            _ticketPriority.Add("Low");
+            _ticketPriority.Add("Medium");
+            _ticketPriority.Add("High");
         }
 
+        //----Start setters for IncidentTicket properties----//
         public DateTime IncidentDate
         {
-            get { return _incidentTicket.Date; }
+           
             set { _incidentTicket.Date = value;
                 NotifyOfPropertyChange(() => CanSubmitTicket);
             }
@@ -103,15 +54,13 @@ namespace NoDesk.ViewModels
 
         public string IncidentSubject
         {
-            get { return _incidentTicket.Subject; }
             set { _incidentTicket.Subject = value;
                 NotifyOfPropertyChange(() => CanSubmitTicket);
             }
         }
-
+        
         public string IncidentReportedBy
         {
-            get { return _incidentTicket.By; }
             set { _incidentTicket.By = value;
                 NotifyOfPropertyChange(() => CanSubmitTicket);
             }
@@ -119,7 +68,6 @@ namespace NoDesk.ViewModels
 
         public string IncidentPriority
         {
-            get { return _incidentTicket.Priority; }
             set { _incidentTicket.Priority = value;
                 NotifyOfPropertyChange(() => CanSubmitTicket);
             }
@@ -127,9 +75,9 @@ namespace NoDesk.ViewModels
 
         public string IncidentDeadline
         {
-            get { return _deadline; }
             set {
-                _deadline = value;
+
+                //----Sets deadline to a date----//
                 switch (value)
                 {
                     case "7 days":
@@ -151,9 +99,9 @@ namespace NoDesk.ViewModels
 
         public string IncidentTicketType
         {
-            get { return _type; }
             set
             {
+                //----Sets IncidentType enumeration----//
                 switch (value)
                 {
                     case "Software":
@@ -172,14 +120,55 @@ namespace NoDesk.ViewModels
 
         public string IncidentDescription
         {
-            get { return _incidentTicket.Description; }
             set { _incidentTicket.Description = value;
                 NotifyOfPropertyChange(() => CanSubmitTicket);
             }
         }
 
+        //----End setters for IncidentTicket properties----//
+
+        //----Start getters and setters for collections----//
+        public BindableCollection<User> Users
+        {
+            get { return _users; }
+            set
+            {
+                _users = value;
+            }
+        }
+
+        public BindableCollection<string> TicketType
+        {
+            get { return _ticketType; }
+            set
+            {
+                _ticketType = value;
+            }
+        }
+
+        public BindableCollection<string> TicketDeadlines
+        {
+            get { return _ticketDeadlines; }
+            set
+            {
+                _ticketDeadlines = value;
+            }
+        }
+
+        public BindableCollection<string> TicketPriority
+        {
+            get { return _ticketPriority; }
+            set
+            {
+                _ticketPriority = value;
+            }
+        }
+
+        //----End getters and setters for collections----//
+
         public bool CanSubmitTicket
         {
+            //----Checks if all fields in the form are filled, enables SubmitTicket button if true----//
             get {
                 return (_incidentTicket.Date != null && _incidentTicket.Type != 0 && !string.IsNullOrWhiteSpace(_incidentTicket.By) && !string.IsNullOrWhiteSpace(_incidentTicket.Priority)
                   && _incidentTicket.Deadline != null && !string.IsNullOrWhiteSpace(_incidentTicket.Subject) && !string.IsNullOrWhiteSpace(_incidentTicket.Description)); 
@@ -188,6 +177,7 @@ namespace NoDesk.ViewModels
 
         public void SubmitTicket(IncidentTicket incidentTicket)
         {
+            //----Submits ticket and returns to IncidentTicketViewModel----//
             _incidentTicket.SubmitTicket(_incidentTicket);
 
             MessageBox.Show("Ticket added.");
@@ -197,6 +187,7 @@ namespace NoDesk.ViewModels
 
         public void CancelTicket()
         {
+            //----Returns to IncidentTicketViewModel----//
             shellViewModel.ActivateItem(new IncidentTicketViewModel(shellViewModel));
         }
     }

@@ -24,11 +24,8 @@
                     VerticalAlignment="Top" 
                     Width="218" 
                     BorderThickness="1" 
-                    SelectedValue="{Binding Path=IncidentTicketType, Mode=OneWayToSource}" 
-                    
-                    IsEditable="True"
-                    IsTextSearchEnabled="True">
-        </ComboBox>
+                    Text="{Binding Path=IncidentTicketType, Mode=OneWayToSource}"/>
+
 
         <ComboBox x:Name="Users" 
                     HorizontalAlignment="Left" 
@@ -38,45 +35,39 @@
                     IsEditable="True"
                     IsTextSearchEnabled="True"
                     DisplayMemberPath="Username"
-                    Text="{Binding Path=IncidentReportedBy, Mode=OneWayToSource}" Height="21"/>
+                    Text="{Binding Path=IncidentReportedBy, Mode=OneWayToSource}" 
+                    Height="21"/>
 
         <ComboBox x:Name="TicketPriority" 
                     HorizontalAlignment="Left" 
                     Margin="189,130,0,0" 
                     VerticalAlignment="Top" 
                     Width="218"  
-                    SelectedValue="{Binding Path=IncidentPriority, Mode=OneWayToSource}" 
-                    
-                    IsEditable="True"
-                    IsTextSearchEnabled="True">
-        </ComboBox>
+                    SelectedValue="{Binding Path=IncidentPriority, Mode=OneWayToSource}"/>
 
-        <ComboBox x:Name="TicketDeadline" 
+
+        <ComboBox x:Name="TicketDeadlines" 
                       HorizontalAlignment="Left" 
                       Margin="189,170,0,0" 
                       VerticalAlignment="Top" 
                       Width="218" 
-                      SelectedValue="{Binding Path=IncidentDeadline, Mode=OneWayToSource}"
-                      
-                      IsEditable="True"
-                      IsTextSearchEnabled="True"/>
+                      SelectedValue="{Binding Path=IncidentDeadline, Mode=OneWayToSource}"/>
 
-        <TextBox x:Name="TicketSubject"
+        <TextBox x:Name="IncidentSubject"
                    HorizontalAlignment="Left" 
                    Height="23" 
                    Margin="189,50,0,0" 
                    TextWrapping="Wrap" 
                    VerticalAlignment="Top" 
-                   Width="218" 
-                   Text="{Binding Path=IncidentSubject, Mode=OneWayToSource}"/>
+                   Width="218"/>
 
-        <TextBox x:Name="TicketDescription"
+        <TextBox x:Name="IncidentDescription"
                    HorizontalAlignment="Left" 
                    Height="137" Margin="189,250,0,0" 
                    TextWrapping="Wrap" 
                    VerticalAlignment="Top" 
-                   Width="218"  
-                   Text="{Binding Path=IncidentDescription, Mode=OneWayToSource}"/>
+                   Width="218"
+                   AcceptsReturn="True"/>
 
         <Button x:Name="CancelTicket" 
                   Content="CANCEL" 

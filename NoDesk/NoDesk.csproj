@@ -125,6 +125,7 @@
     <Compile Include="ViewModels\LoginViewModel.cs" />
     <Compile Include="ViewModels\ShellViewModel.cs" />
     <Compile Include="ViewModels\ShowIncidentTicketViewModel.cs" />
+    <Compile Include="ViewModels\UserTicketsViewModel.cs" />
     <Compile Include="ViewModels\UserViewModel.cs" />
     <Compile Include="Views\AddIncidentTicketView.xaml.cs">
       <DependentUpon>AddIncidentTicketView.xaml</DependentUpon>
@@ -149,6 +150,9 @@
     </Compile>
     <Compile Include="Views\ShowIncidentTicketView.xaml.cs">
       <DependentUpon>ShowIncidentTicketView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\UserTicketsView.xaml.cs">
+      <DependentUpon>UserTicketsView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\UserView.xaml.cs">
       <DependentUpon>UserView.xaml</DependentUpon>
@@ -186,6 +190,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\ShowIncidentTicketView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\UserTicketsView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
