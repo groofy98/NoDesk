@@ -7,17 +7,21 @@ using System.Threading.Tasks;
 
 namespace NoDesk.Dal {
     public class TicketDal : Database {
+
         public List<IncidentTicket> GetTickets() {
             var collection = database.GetCollection<IncidentTicket>("tickets");
             var filter = Builders<IncidentTicket>.Filter.Empty;
             return collection.Find(filter).ToList();
         }
 
-        public List<IncidentTicket> GetTicketsPastDeadline()
+        public List<IncidentTicket> GetTicketsPastDeadline(User user)
         {
             var collection = database.GetCollection<IncidentTicket>("tickets");
             var filter = Builders<IncidentTicket>.Filter.Lte("Deadline", DateTime.Now);
             filter &= Builders<IncidentTicket>.Filter.Eq("Status", false);
+            if (user.Type == UserType.User)
+                filter &= Builders<IncidentTicket>.Filter.Eq("By", user.Username);
+
             return collection.Find(filter).ToList();
         }
 
@@ -34,25 +38,30 @@ namespace NoDesk.Dal {
             collection.InsertOne(ticket);
         }
 
-
-        public int GetTotalTicketAmount()
+        public int GetTotalTicketAmount(User user)
         {
             var collection = database.GetCollection<IncidentTicket>("tickets");
-            var filter = Builders<IncidentTicket>.Filter.Empty;            
+            var filter = Builders<IncidentTicket>.Filter.Empty;
+            if (user.Type == UserType.User)
+                filter &= Builders<IncidentTicket>.Filter.Eq("By", user.Username);
             return (int) collection.Find(filter).CountDocuments();
         }
 
-        public int GetSolvedTicketAmount()
+        public int GetSolvedTicketAmount(User user)
         {
             var collection = database.GetCollection<IncidentTicket>("tickets");
             var filter = Builders<IncidentTicket>.Filter.Eq("Status", true);
+            if (user.Type == UserType.User)
+                filter &= Builders<IncidentTicket>.Filter.Eq("By", user.Username);
             return (int)collection.Find(filter).CountDocuments();
         }
 
-        public int GetOpenTicketAmount()
+        public int GetOpenTicketAmount(User user)
         {
             var collection = database.GetCollection<IncidentTicket>("tickets");
             var filter = Builders<IncidentTicket>.Filter.Eq("Status", false);
+            if (user.Type == UserType.User)
+                filter &= Builders<IncidentTicket>.Filter.Eq("By", user.Username);
             return (int)collection.Find(filter).CountDocuments();
         }
 
@@ -61,14 +70,18 @@ namespace NoDesk.Dal {
             var collection = database.GetCollection<IncidentTicket>("tickets");
             var filter = Builders<IncidentTicket>.Filter.Gte("Date", user.LastLogin);
             filter &= Builders<IncidentTicket>.Filter.Eq("Status", false);
+            if (user.Type == UserType.User)
+                filter &= Builders<IncidentTicket>.Filter.Eq("By", user.Username);
             return (int)collection.Find(filter).CountDocuments();
         }
 
-        public int GetTicketPastDeadlineAmount()
+        public int GetTicketPastDeadlineAmount(User user)
         {
             var collection = database.GetCollection<IncidentTicket>("tickets");
             var filter = Builders<IncidentTicket>.Filter.Lte("Deadline", DateTime.Now);
             filter &= Builders<IncidentTicket>.Filter.Eq("Status", false);
+            if (user.Type == UserType.User)
+                filter &= Builders<IncidentTicket>.Filter.Eq("By", user.Username);
             return (int)collection.Find(filter).CountDocuments();
         }
 

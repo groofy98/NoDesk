@@ -15,6 +15,8 @@ namespace NoDesk.ViewModels
     {
         private readonly ShellViewModel shellViewModel;
 
+
+        //Populates a label with the amount of tickets added since last login
         public string NewTickets 
         { 
             get 
@@ -23,7 +25,7 @@ namespace NoDesk.ViewModels
                 return ticketDal.GetNewTicketAmount(shellViewModel.LoggedUser).ToString();               
             }                        
         }
-
+        // The value needed to populate the dashboard 
         public ObservableValue TicketsSolved
         {
             get { return new ObservableValue(_ticketsTotal.Value - _ticketsOpen.Value); }
@@ -44,11 +46,12 @@ namespace NoDesk.ViewModels
 
         private ObservableValue _ticketsOpen;
 
+        // Value to fill Gauge on dashboard
         public ObservableValue TicketsOpen
         {
             get { return _ticketsOpen; }
             set { _ticketsOpen = value;                
-                NotifyOfPropertyChange(() => UnresolvedLabel);
+                NotifyOfPropertyChange(() => UnresolvedLabel); //Updates the label if the amount of open tickets is changed
                 NotifyOfPropertyChange(() => TicketsOpen);
                 NotifyOfPropertyChange(() => TicketsSolved);
             }
@@ -62,50 +65,57 @@ namespace NoDesk.ViewModels
             set { _ticketsPastDeadline = value; }
         }
 
-
+        // Contructs a label for the first gauge
         public string UnresolvedLabel {
             get { return _ticketsOpen.Value + "/" + _ticketsTotal.Value; }
             }
+
 
         public string DeadlineLabel 
         {
             get { return "" + _ticketsPastDeadline.Value; }
         }
-
+        // Changes from dashboard to ticket view
         public void ShowList()
         {
             this.shellViewModel.ShowTickets();            
         }
 
+        // Loads up a ticketview but only the tickets past deadline
         public void ShowTicketsPastDeadline()
         {            
             var incidents = new IncidentTicketViewModel(this.shellViewModel)
             {
-                IncidentTickets = new BindableCollection<IncidentTicket>(new TicketDal().GetTicketsPastDeadline())
+                IncidentTickets = new BindableCollection<IncidentTicket>(new TicketDal().GetTicketsPastDeadline(shellViewModel.LoggedUser))
             };
             this.shellViewModel.ActivateItem(incidents);
         }
 
+        
         public SeriesCollection SeriesCollection { get; set; }
 
         public SeriesCollection DeadlineData { get; set; }
 
+        
+        // Constructor
         public DashboardViewModel(ShellViewModel shellViewModel) {
             this.shellViewModel = shellViewModel;
             TicketDal ticketDal = new TicketDal();
 
-            TicketsPastDeadline = new ObservableValue(ticketDal.GetTicketPastDeadlineAmount());
+            // Get values from database and put them in a ObservableValue object
+            TicketsPastDeadline = new ObservableValue(ticketDal.GetTicketPastDeadlineAmount(shellViewModel.LoggedUser));
             TicketsPastDeadline.PropertyChanged += (obj, args) =>
-            { NotifyOfPropertyChange(() => DeadlineLabel); };
+            { NotifyOfPropertyChange(() => DeadlineLabel); }; // Adding a listener to the object so the label changes with the value
 
-            TicketsOpen = new ObservableValue(ticketDal.GetOpenTicketAmount());
+            TicketsOpen = new ObservableValue(ticketDal.GetOpenTicketAmount(shellViewModel.LoggedUser));
             TicketsOpen.PropertyChanged += (obj, args) =>
             { NotifyOfPropertyChange(() => UnresolvedLabel); };
 
-            TicketsTotal = new ObservableValue(ticketDal.GetTotalTicketAmount());
+            TicketsTotal = new ObservableValue(ticketDal.GetTotalTicketAmount(shellViewModel.LoggedUser));
             TicketsTotal.PropertyChanged += (obj, args) =>
             { NotifyOfPropertyChange(() => UnresolvedLabel); };
 
+            // Put the Observable in a collection so they can be bound to the gauges
             DeadlineData = new SeriesCollection
             {
                 new PieSeries

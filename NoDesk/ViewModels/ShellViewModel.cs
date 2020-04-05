@@ -21,7 +21,9 @@ namespace NoDesk.ViewModels
             get { return loggedUser; }
             set {
                 loggedUser = value;
-                //new UserDal().UpdateLastLogin(LoggedUser);
+                //update the LastLogin value in the database
+                if (loggedUser != null)
+                    new UserDal().UpdateLastLogin(LoggedUser);
                 NotifyOfPropertyChange(() => CanShowDashboard);
                 NotifyOfPropertyChange(() => CanShowUsers);
                 NotifyOfPropertyChange(() => CanShowTickets);
@@ -59,7 +61,7 @@ namespace NoDesk.ViewModels
 
         public bool CanShowDashboard {
             get {
-                if (LoggedUser != null && LoggedUser.Type == UserType.Employee) {
+                if (LoggedUser != null) {
                         return true;
                 }
                 return false;
