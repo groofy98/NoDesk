@@ -20,6 +20,7 @@ namespace NoDesk.ViewModels
             this.shellViewModel = shellViewModel;
         }
 
+        //Setters for user values
         public string FirstName
         {
             set { user.FirstName = value; }
@@ -59,14 +60,17 @@ namespace NoDesk.ViewModels
             set { user.Location = value; }
         }
 
+        //--------------
+
         public void CancelButton()
         {
-
+            //Returns back to userview
             shellViewModel.ActivateItem(new UserViewModel(shellViewModel));
 
         }
         public void AddUser()
         {
+            //Adds user to database and returns to userview
             user.AddUser(user);
             MessageBox.Show("User added!");
             shellViewModel.ActivateItem(new UserViewModel(shellViewModel));
