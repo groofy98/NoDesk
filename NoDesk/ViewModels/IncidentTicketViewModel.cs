@@ -126,10 +126,6 @@ namespace NoDesk.ViewModels {
             shellViewModel.ActivateItem(new UserTicketsViewModel(shellViewModel));
         }
 
-        public bool CanCreateIncident {
-            get { return shellViewModel.LoggedUser.Type == UserType.Employee; }
-        }
-
         public bool CanDeleteIncidentTicket {
             get {
                 if (shellViewModel.LoggedUser.Type == UserType.User) {
