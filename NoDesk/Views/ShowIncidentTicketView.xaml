@@ -8,11 +8,11 @@
              d:DesignHeight="450" d:DesignWidth="800" Background="White">
     <Grid HorizontalAlignment="Center" VerticalAlignment="Top">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="400*"/>
-            <ColumnDefinition Width="400*"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="Auto"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition  Height="45"/>
+            <RowDefinition  Height="auto"/>
             <RowDefinition  Height="auto"/>
             <RowDefinition  Height="auto"/>
             <RowDefinition  Height="auto"/>
@@ -26,35 +26,35 @@
         </Grid.RowDefinitions>
 
         <!-- Row 1 -->
-        <Button x:Name="Back" Width="50" Height="25" HorizontalAlignment="Left" Margin="10,0,0,0" Grid.Row="0" Grid.Column="0">Back</Button>
-        <Button x:Name="Save" Width="50" Height="25" HorizontalAlignment="Right" Margin="0,0,10,0" Grid.Row="0" Grid.Column="1" Background="Green">Save</Button>
+        <Button x:Name="Back" Width="50" Height="25" HorizontalAlignment="Left" Margin="10,25,0,0" Grid.Row="0" Grid.Column="0">Back</Button>
+        <Button x:Name="Save" Width="50" Height="25" HorizontalAlignment="Right" Margin="0,25,10,0" Grid.Row="0" Grid.Column="1" Background="Green">Save</Button>
 
         <!-- Row 2, Column 1 -->
-        <Label x:Name="ByLabel" Content="By:" Grid.Row="1" Grid.Column="0" Width="100" HorizontalAlignment="Left"/>
-        <TextBox x:Name="By" Text="{Binding IncidentTicket.By}" Grid.Row="1" Grid.Column="0" Margin="100,4,100,3" Height="20" Width="200" HorizontalAlignment="Center"/>
+        <Label x:Name="ByLabel" Content="By:" Grid.Row="1" Grid.Column="0" Width="75" HorizontalAlignment="Left"/>
+        <TextBox x:Name="By" Text="{Binding IncidentTicket.By}" Grid.Row="1" Grid.Column="0" Margin="75,0,25,0" Height="20" Width="200" HorizontalAlignment="Left" VerticalAlignment="Center"/>
 
         <!-- Row 2, Column 2 -->
-        <Label x:Name="DateLabel" Content="Date:" Grid.Row="1" Grid.Column="1" Width="100" HorizontalAlignment="Left"/>
-        <DatePicker x:Name="Date" Grid.Row="1" Grid.Column="1" Margin="100,4,100,3" Height="25" Width="200" HorizontalAlignment="Center"
-                    SelectedDate="{Binding IncidentTicket.Date}" />
+        <Label x:Name="DateLabel" Content="Date:" Grid.Row="1" Grid.Column="1" Width="75" HorizontalAlignment="Left" Margin="25,0,0,0"/>
+        <DatePicker x:Name="Date" Grid.Row="1" Grid.Column="1" Margin="100,5,0,5" Height="25" Width="200" HorizontalAlignment="Left"
+                    SelectedDate="{Binding IncidentTicket.Date}" VerticalAlignment="Center" />
 
         <!-- Row 3, Column 1 -->
-        <Label x:Name="TypeLabel" Content="Type:" Grid.Row="2" Grid.Column="0" Width="100" HorizontalAlignment="Left"/>
-        <ComboBox x:Name="Type" Grid.Row="2" Grid.Column="0" Margin="100,4,100,3" Height="20" Width="200" HorizontalAlignment="Center"
-                  SelectedValue="{Binding IncidentTicket.Type}" SelectedValuePath="Content">
+        <Label x:Name="TypeLabel" Content="Type:" Grid.Row="2" Grid.Column="0" Width="75" HorizontalAlignment="Left"/>
+        <ComboBox x:Name="Type" Grid.Row="2" Grid.Column="0" Margin="75,0,25,0" Height="20" Width="200" HorizontalAlignment="Left"
+                  SelectedValue="{Binding IncidentTicket.Type}" SelectedValuePath="Content" VerticalAlignment="Center">
             <ComboBoxItem Content="Software"></ComboBoxItem>
             <ComboBoxItem Content="Hardware"></ComboBoxItem>
             <ComboBoxItem Content="Service"></ComboBoxItem>
         </ComboBox>
 
         <!-- Row 3, Column 2 -->
-        <Label x:Name="DeadlineLabel" Content="Deadline:" Grid.Row="2" Grid.Column="1" Width="100" HorizontalAlignment="Left"/>
-        <DatePicker x:Name="Deadline" Grid.Row="2" Grid.Column="1" Margin="100,4,100,3" Height="25" Width="200" HorizontalAlignment="Center"
+        <Label x:Name="DeadlineLabel" Content="Deadline:" Grid.Row="2" Grid.Column="1" Width="75" HorizontalAlignment="Left" Margin="25,0,0,0"/>
+        <DatePicker x:Name="Deadline" Grid.Row="2" Grid.Column="1" Margin="100,5,0,5" Height="25" Width="200" HorizontalAlignment="Left"
                     SelectedDate="{Binding IncidentTicket.Deadline}" />
 
         <!-- Row 4, Column 1 -->
-        <Label x:Name="PriorityLabel" Content="Priority:" Grid.Row="3" Grid.Column="0" Width="100" HorizontalAlignment="Left"/>
-        <ComboBox x:Name="Priority" Grid.Row="3" Grid.Column="0" Margin="100,4,100,3" Height="20" Width="200" HorizontalAlignment="Center"
+        <Label x:Name="PriorityLabel" Content="Priority:" Grid.Row="3" Grid.Column="0" Width="75" HorizontalAlignment="Left"/>
+        <ComboBox x:Name="Priority" Grid.Row="3" Grid.Column="0" Margin="75,4,25,3" Height="20" Width="200" HorizontalAlignment="Left"
                   SelectedValue="{Binding IncidentTicket.Priority}" SelectedValuePath="Content">
             <ComboBoxItem Content="Low"></ComboBoxItem>
             <ComboBoxItem Content="Normal"></ComboBoxItem>
@@ -62,8 +62,8 @@
         </ComboBox>
 
         <!-- Row 5 -->
-        <Label x:Name="SubjectLabel" Content="Subject:" Grid.Row="4" Grid.Column="0" Width="100" HorizontalAlignment="Left"/>
-        <TextBox x:Name="Subject" Text="{Binding IncidentTicket.Subject}" Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" Margin="100,4,100,3" Height="20" MinWidth="100" Width="auto" MaxWidth="650" HorizontalAlignment="Left"/>
+        <Label x:Name="SubjectLabel" Content="Subject:" Grid.Row="4" Grid.Column="0" Width="75" HorizontalAlignment="Left"/>
+        <TextBox x:Name="Subject" Text="{Binding IncidentTicket.Subject}" Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" Margin="75,4,100,3" Height="20" MinWidth="100" Width="auto" MaxWidth="650" HorizontalAlignment="Left"/>
 
         <!-- Row 6 -->
         <Label x:Name="DescriptionLabel" Content="Description:" Grid.Row="5" Grid.Column="0" Width="100" HorizontalAlignment="Left"/>
