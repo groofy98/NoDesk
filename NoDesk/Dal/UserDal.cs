@@ -27,6 +27,21 @@ namespace NoDesk.Dal
             
         }
 
+        public List<User> GetUserbyEmail(string email)
+        {
+            try
+            {
+                var collection = database.GetCollection<User>("users");
+                var filter = Builders<User>.Filter.Eq("MailAddress", email); //filter to only get users with a certain email
+                return collection.Find(filter).ToList();
+            }
+            catch
+            {
+                return new List<User>();
+            }
+
+        }
+
         public void UpdateLastLogin(User user)
         {
             var oldLastLogin = user.LastLogin;
