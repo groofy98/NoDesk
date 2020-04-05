@@ -81,7 +81,7 @@ namespace NoDesk.ViewModels
         {            
             var incidents = new IncidentTicketViewModel(this.shellViewModel)
             {
-                IncidentTickets = new BindableCollection<IncidentTicket>(new TicketDal().GetTicketsPastDeadline())
+                IncidentTickets = new BindableCollection<IncidentTicket>(new TicketDal().GetTicketsPastDeadline(shellViewModel.LoggedUser))
             };
             this.shellViewModel.ActivateItem(incidents);
         }
@@ -94,15 +94,15 @@ namespace NoDesk.ViewModels
             this.shellViewModel = shellViewModel;
             TicketDal ticketDal = new TicketDal();
 
-            TicketsPastDeadline = new ObservableValue(ticketDal.GetTicketPastDeadlineAmount());
+            TicketsPastDeadline = new ObservableValue(ticketDal.GetTicketPastDeadlineAmount(shellViewModel.LoggedUser));
             TicketsPastDeadline.PropertyChanged += (obj, args) =>
             { NotifyOfPropertyChange(() => DeadlineLabel); };
 
-            TicketsOpen = new ObservableValue(ticketDal.GetOpenTicketAmount());
+            TicketsOpen = new ObservableValue(ticketDal.GetOpenTicketAmount(shellViewModel.LoggedUser));
             TicketsOpen.PropertyChanged += (obj, args) =>
             { NotifyOfPropertyChange(() => UnresolvedLabel); };
 
-            TicketsTotal = new ObservableValue(ticketDal.GetTotalTicketAmount());
+            TicketsTotal = new ObservableValue(ticketDal.GetTotalTicketAmount(shellViewModel.LoggedUser));
             TicketsTotal.PropertyChanged += (obj, args) =>
             { NotifyOfPropertyChange(() => UnresolvedLabel); };
 
