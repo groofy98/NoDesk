@@ -27,10 +27,10 @@ namespace NoDesk.ViewModels {
             if (users.Count > 0 && users[0].Password == passwordInput) { //user is found and password matches
                 this.shellViewModel.LoggedUser = users[0];
 
-                //check if user is admin
-                if (shellViewModel.LoggedUser.Type == UserType.Admin) {
+                //check if user is employee
+                if (shellViewModel.LoggedUser.Type == UserType.Employee) {
                     string verificationCode = VerifyUser();
-                    this.shellViewModel.ActivateItem(new LoginVerificationViewModel(this.shellViewModel, verificationCode)); //extra user verification measurement for admins.
+                    this.shellViewModel.ActivateItem(new LoginVerificationViewModel(this.shellViewModel, verificationCode)); //extra user verification measurement for employees.
                 } else {
                     this.shellViewModel.ActivateItem(new IncidentTicketViewModel(this.shellViewModel)); //show tickets after login    
                 }                         
@@ -50,7 +50,7 @@ namespace NoDesk.ViewModels {
                     ResetPassword();
                 }
             } else {
-                MessageBox.Show("Please fill in username.");
+                MessageBox.Show("Please fill in a username.");
             }       
         }
 
@@ -69,7 +69,7 @@ namespace NoDesk.ViewModels {
 
         private string VerifyUser() {
             List<User> users = userDAL.GetUserByUsername(usernameInput);
-            string verificationCode = GenerateRandomString(10);
+            string verificationCode = GenerateRandomString(3); //low number for demonstrative purposes
             if (users.Count > 0) {           
                 string message = "Please log in to NoDesk using the following code: " + verificationCode;
                 SendEmail(users[0], message);

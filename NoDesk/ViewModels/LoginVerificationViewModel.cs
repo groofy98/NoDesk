@@ -18,13 +18,12 @@ namespace NoDesk.ViewModels {
         }
 
         public void LoginButton() {
-            //TODO: put if statement back before handing in assignment
-            //if(VerificationCode == CodeInput) {
+            if(VerificationCode == CodeInput) {
                 this.shellViewModel.ActivateItem(new DashboardViewModel(this.shellViewModel)); //show dashboard
-            /*} else {
+            } else {
                 MessageBox.Show("Verification code was not filled in correctly. Please try again or contact our service desk.");
             }   
-            */
+            
         }
     }
 }
