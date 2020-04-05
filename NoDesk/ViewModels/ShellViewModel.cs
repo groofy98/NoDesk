@@ -21,6 +21,7 @@ namespace NoDesk.ViewModels
             get { return loggedUser; }
             set {
                 loggedUser = value;
+                //new UserDal().UpdateLastLogin(LoggedUser);
                 NotifyOfPropertyChange(() => CanShowDashboard);
                 NotifyOfPropertyChange(() => CanShowUsers);
                 NotifyOfPropertyChange(() => CanShowTickets);

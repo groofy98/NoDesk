@@ -17,6 +17,7 @@ namespace NoDesk
         public string LastName { get; set; }
         public string Username { get; set; }
         public string Password { get; set; }
+        public DateTime LastLogin { get; set; }
         public UserType Type { get; set; }
         public string MailAddress { get; set; }
         public int PhoneNumber { get; set; }

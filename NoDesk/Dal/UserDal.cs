@@ -27,6 +27,14 @@ namespace NoDesk.Dal
             
         }
 
+        public void UpdateLastLogin(User user)
+        {
+            var oldLastLogin = user.LastLogin;
+            user.LastLogin = DateTime.Now;
+            UpdateUser(user);
+            user.LastLogin = oldLastLogin;
+        }
+
         public void UpdateUser(User user)
         {
             var collection = database.GetCollection<User>("users");
