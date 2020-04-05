@@ -126,6 +126,7 @@ namespace NoDesk.ViewModels
 
         private void SendEmail(User user, string message)
         {
+            //Sends email
             MailMessage mail = new MailMessage();
             mail.Body = message;
             mail.To.Add(new MailAddress(user.MailAddress));
