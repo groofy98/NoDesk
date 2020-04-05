@@ -64,10 +64,11 @@ namespace NoDesk.ViewModels {
                 }
                 if (IncidentTicket.Type == incidentTicket.Type) {
                     if (IncidentTicket.Subject.ToUpper() == incidentTicket.Subject.ToUpper() || IncidentTicket.Subject.ToUpper().Contains(incidentTicket.Subject.ToUpper()) || incidentTicket.Subject.ToUpper().Contains(IncidentTicket.Subject.ToUpper())) {
-                        string[] descriptionWords = incidentTicket.Description.Split(' ');
                         int sameWords = 0;
 
-                        if (IncidentTicket.Description != null && IncidentTicket.Description != "") {
+                        if (IncidentTicket.Description != null && IncidentTicket.Description != "" && incidentTicket.Description != null && incidentTicket.Description != "") {
+                            string[] descriptionWords = incidentTicket.Description.Split(' ');
+
                             foreach (string word in descriptionWords) {
                                 if (IncidentTicket.Description.ToUpper().Contains(word.ToUpper())) {
                                     sameWords++;
